@@ -1,0 +1,43 @@
+package net.xiaoyu.dp.command;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Boy {
+
+	
+	private String name;
+	
+	private List<Command> commList = new ArrayList<Command>();
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	
+	public void pursue(MM mm){
+
+		
+	}
+	
+	public void order(Boy b){
+		Command command = new ShopingCommand();
+		b.commList.add(c);
+		
+		
+		
+		
+	}
+	
+}

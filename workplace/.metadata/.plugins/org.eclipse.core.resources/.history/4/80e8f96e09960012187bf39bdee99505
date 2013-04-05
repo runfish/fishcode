@@ -1,0 +1,47 @@
+package net.dfrz.homework.action;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import net.dfrz.homework.domain.User;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UserAction extends ActionSupport {
+
+	
+	List<User> userList = new ArrayList<User>();
+	
+	
+	private  User  user;
+		
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
+
+
+	@Override
+	public String execute(){
+		
+		
+		return  null;
+	}
+	
+	public String save(){
+		
+		return null;
+	}
+}

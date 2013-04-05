@@ -1,0 +1,54 @@
+8
+
+dir
+1189
+svn://dfrz004.xicp.net/trunk/JAVA1205-smmgr-01-002/src/net/dfrz/smmgr01/exception
+svn://dfrz004.xicp.net
+
+
+
+2012-12-31T15:01:37.594725Z
+1077
+J1205-YouHQ
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+ApplicationException.java
+file
+
+
+
+
+2013-01-01T17:29:58.152648Z
+1f53f8fb8d5b301e118b8d753cafbce9
+2012-12-31T15:01:37.594725Z
+1077
+J1205-YouHQ
+has-props
+
+DataAccessException.java
+file
+
+
+
+
+2013-01-01T17:29:58.167649Z
+42a7beda2713fcc8555a24b24164bdb3
+2012-12-31T15:01:37.594725Z
+1077
+J1205-YouHQ
+has-props
+

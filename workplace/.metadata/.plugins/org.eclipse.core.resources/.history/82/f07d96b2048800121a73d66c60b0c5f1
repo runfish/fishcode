@@ -1,0 +1,44 @@
+function validateEntry(queryFrm){
+         
+           with(queryFrm){
+               if(qurymingoodsprice.value==""){
+                    if(qurymaxgoodsprice.value=="")
+                       return true;
+                    if(qurymaxgoodsprice.value!=""){
+                        if(!isNaN(qurymaxgoodsprice.value))
+                            return true;
+                       }
+                }
+               if(qurymingoodsprice.value!=""){
+                  if(!isNaN(qurymingoodsprice.value)){
+                     if(qurymaxgoodsprice.value=="")
+                       return true;
+                       
+                       
+                     if(qurymaxgoodsprice.value!=""){
+                        if(!isNaN(qurymaxgoodsprice.value))
+                            return true;
+                        else{
+                             alert('价格必须为数字，请重新输入在查询');
+                             ${'qurymaxgoodsprice'}.select();
+                            return false;
+                          }
+                       }
+                    }
+                  else{
+                    alert('价格必须为数字，请重新输入在查询');
+                    ${'qurymingoodsprice'}.select();
+                    return false;
+                }
+                }
+                else{
+                alert('价格必须为数字，请重新输入在查询');
+                  ${'qurymingoodsprice'}.select();
+                return false;
+                }
+            
+             
+            }
+ 
+            
+ }

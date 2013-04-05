@@ -1,0 +1,26 @@
+/**
+ * 消息类
+ */
+package com.qq.server.common;
+
+//序列化
+public class Message implements java.io.Serializable{
+	private String msgType = null;
+	private Object msg = null;
+	
+	/*
+	 * getters and setters
+	 */
+	public String getMsgType() {
+		return msgType;
+	}
+	public void setMsgType(String msgType) {
+		this.msgType = msgType;
+	}
+	public Object getMsg() {
+		return msg;
+	}
+	public void setMsg(Object msg) {
+		this.msg = msg;
+	}
+}

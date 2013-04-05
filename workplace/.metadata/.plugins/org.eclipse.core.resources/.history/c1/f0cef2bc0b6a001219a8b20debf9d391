@@ -1,0 +1,52 @@
+/**
+ * 
+ */
+package beStrong.oneDay;
+
+/**
+ * @author Administrator
+ *
+ */
+public class RefectPoint {
+	
+	
+	private int color;
+	
+	private int name;
+	
+	public String age = "abcfdbaba";
+	
+	public String sex = "abbbaabsdfab";
+
+	public RefectPoint(int color, int name) {
+		super();
+		this.color = color;
+		this.name = name;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + color;
+		result = prime * result + name;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final RefectPoint other = (RefectPoint) obj;
+		if (color != other.color)
+			return false;
+		if (name != other.name)
+			return false;
+		return true;
+	}
+
+}

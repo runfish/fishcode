@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 0 elements(s) to &apos;main&apos;&#x0D;&#x0A;- Destination element: &apos;main&apos;" description="Move compilation units" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1362624914133" target="/supershop01-01/WebRoot/jsps/main" units="0" version="1.0"/>
+</session>

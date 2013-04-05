@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package net.dfrz;
+
+import java.util.HashSet;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Tester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		HashSet<Apple> apple = new HashSet<Apple>(); 
+		
+		apple.add(new Apple("red","60"));
+		apple.add(new Apple("green","90"));
+		
+		System.out.println(apple.size());
+
+	}
+
+}

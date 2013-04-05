@@ -1,0 +1,54 @@
+8
+
+dir
+1189
+svn://dfrz004.xicp.net/trunk/JAVA1205-smmgr-01-002/src/net/dfrz/smmgr01/controller
+svn://dfrz004.xicp.net
+
+
+
+2013-01-07T08:15:47.075864Z
+1180
+J1205-HongHG
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+GoodsServlet.java
+file
+
+
+
+
+2013-01-07T10:04:28.577083Z
+6d53efb8387dd9250f99ee746767aef7
+2013-01-07T08:15:47.075864Z
+1180
+J1205-HongHG
+has-props
+
+CategoryServlet.java
+file
+
+
+
+
+2013-01-07T10:04:28.596084Z
+340a00c6080e61065acc71966bd7a0a7
+2013-01-05T15:05:23.413315Z
+1160
+J1205-YouHQ
+has-props
+

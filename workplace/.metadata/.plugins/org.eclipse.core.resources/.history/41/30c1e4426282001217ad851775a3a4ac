@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import net.dfrz.supershop01.dao.CustomerDao;
+import net.dfrz.supershop01.domain.Customer;
+
+/**
+ * @author Administrator
+ *
+ */
+public class CustomerDaoJDBCImpl implements CustomerDao {
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.CustomerDao#add(net.dfrz.supershop01.domain.Customer)
+	 */
+	@Override
+	public void add(Customer customer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.CustomerDao#getCustomerByName(java.lang.String)
+	 */
+	@Override
+	public Customer getCustomerByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.CustomerDao#updateCustomer(net.dfrz.supershop01.domain.Customer)
+	 */
+	@Override
+	public void updateCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

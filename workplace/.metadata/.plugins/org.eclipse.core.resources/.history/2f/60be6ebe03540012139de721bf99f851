@@ -1,0 +1,109 @@
+package net.dfrz.smmgr01.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.dfrz.smmgr01.domain.Category;
+import net.dfrz.smmgr01.exception.ApplicationException;
+import net.dfrz.smmgr01.services.CategoryService;
+import net.dfrz.smmgr01.services.CategoryServiceImpl;
+
+public class CategoryServlet extends HttpServlet {
+
+	/**
+	 * Constructor of the object.
+	 */
+	public CategoryServlet() {
+		super();
+	}
+
+	/**
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		String act=request.getParameter("act");
+		
+		if(act.equals("input")){
+			request.getRequestDispatcher("jsps/category/input_ctg.jsp").forward(request, response);
+		}
+		
+		
+		else if("create".equals(act)){
+			
+			String categoryName=request.getParameter("ctgname");
+			
+			Category ctg = new Category();
+			ctg.setCtgName(categoryName);
+			CategoryService ctgService = new CategoryServiceImpl();
+			try{
+				
+			ctgService.addCtg(ctg);
+			
+			}catch(ApplicationException e){
+				request.setAttribute("err", e.getMessage());
+				request.getRequestDispatcher("/jsps/category/input_ctg.jsp").forward(request, response);
+			    return;
+			}
+			response.sendRedirect("categoryMgr?act=loadall");
+		}
+		
+		else if("loadall".equals(act)){
+			CategoryService ctgService = new CategoryServiceImpl();
+			request.setAttribute("ctgList", ctgService.loadAll());
+			request.getRequestDispatcher("/jsps/category/list_ctg.jsp").forward(request, response);
+			
+		}
+		
+		
+		else if("delete".equals(act)){
+			int ctgId=Integer.parseInt(request.getParameter("ctgid"));
+			Category ctg = new Category();
+			ctg.setCtgId(ctgId);
+			
+			CategoryService ctgService = new CategoryServiceImpl();
+			ctgService.deleteCtg(ctg);
+			
+			response.sendRedirect("categoryMgr?act=loadall");
+			}
+		else if("forUpdate".equals(act)){
+			int ctgId=Integer.parseInt(request.getParameter("ctgid"));
+			CategoryService ctgService = new CategoryServiceImpl();
+			
+		}
+		
+		else if("update".equals(act)){
+			
+		}
+
+	}
+
+	/**
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+        doGet(request, response);
+	}
+
+}

@@ -1,0 +1,97 @@
+package net.dfrz.collection;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath.Step;
+
+public class CollectionTest {
+	
+	public static void main(String[] args) {
+		
+		Collection  c = new ArrayList();
+		
+		c.add("xiaoyu");
+		c.add(new Name("xiaoyu","xiaoyuer"));
+		c.add(new Integer(100));
+		System.out.println(c);
+		c.remove(new Name("xiaoyu","xiaoyuer"));
+		System.out.println(c);
+		
+		Map<String, Object> c1 = new HashMap<String,Object>();
+		c1.put("1", "hellow");
+		c1.put("2", new Name("xiaoyu","xiaoyuer"));
+		c1.put("3", new Integer(100));
+		System.out.println(c1);
+		c1.remove(new Name("xiaoyu","xiaoyuer"));
+		System.out.println(c1);
+		
+		
+		
+	}
+
+}
+
+class Name{
+
+	public Name() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	private String firstName;
+	
+	
+	private  String  secondName;
+
+
+	public Name(String firstName, String secondName) {
+		super();
+		this.firstName = firstName;
+		this.secondName = secondName;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		if (obj instanceof Name) {
+			Name name = (Name) obj;
+			
+			return this.firstName.equals(name.firstName)
+			        && this.secondName.equals(name.secondName);
+			
+		}
+		return super.equals(obj);
+	}
+
+
+//	/* (non-Javadoc)
+//	 * @see java.lang.Object#hashCode()
+//	 */
+//	@Override
+//	public int hashCode() {
+//		// TODO Auto-generated method stub
+//		return this.firstName.hashCode();
+//	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.firstName+"\t"+this.secondName;
+	}
+	
+	
+	
+	
+	
+}

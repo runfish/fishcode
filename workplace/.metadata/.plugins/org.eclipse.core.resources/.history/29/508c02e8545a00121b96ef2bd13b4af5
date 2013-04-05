@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.servicesimpl;
+
+/**
+ * @author Administrator
+ *
+ */
+public class GoodsQueryHelper {
+
+}

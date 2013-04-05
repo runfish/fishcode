@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+   <userinfo id="1">
+   <username>admint</username>
+   <password>12356</password>
+   <mail>xiaoyu@163.com</mail>
+   <address><![CDATA[sdsdfsfjhjhlsklj.z,clsfjhl]]></address>
+   </userinfo>
+   
+   <userinfo id="2">
+   <username id="2">xiaoyu</username>
+   <password>3456</password>
+   <mail>xiaoyu@163.com</mail>
+   <address><![CDATA[sdsdfsfjhjhlsklj.z,clsfjhl]]></address>
+   </userinfo>
+   
+   
+   <userinfo id="3">
+   <username id="3">xiaoyou</username>
+   <password>12345</password>
+   <mail>xiaoyu@163.com</mail>
+   <address><![CDATA[sdsdfsfjhjhlsklj.z,clsfjhl]]></address>
+   </userinfo>
+   
+   <userinfo id="4">
+   <username id="4">huangguan</username>
+   <password>1234</password>
+   <mail>xiaoyu@163.com</mail>
+   <address><![CDATA[sdsdfsfjhjhlsklj.z,clsfjhl]]></address>
+   </userinfo>
+</root>

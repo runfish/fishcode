@@ -1,0 +1,9 @@
+net.dfrz.supershop01.config
+net.dfrz.supershop01.controller
+net.dfrz.supershop01.dao
+net.dfrz.supershop01.daoimpl
+net.dfrz.supershop01.domain
+net.dfrz.supershop01.exception
+net.dfrz.supershop01.services
+net.dfrz.supershop01.servicesimpl
+net.dfrz.supershop01.utils

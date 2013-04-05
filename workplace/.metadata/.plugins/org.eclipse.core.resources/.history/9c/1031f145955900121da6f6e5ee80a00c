@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import net.dfrz.supershop01.dao.GoodsDao;
+
+/**
+ * @author Administrator
+ *
+ */
+public class GoodsDaoJDBCImpl implements GoodsDao {
+
+}

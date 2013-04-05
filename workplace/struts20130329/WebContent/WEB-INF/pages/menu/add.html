@@ -1,0 +1,81 @@
+<div class="pageContent">
+	<form method="post" action="menu/save"
+		class="pageForm required-validate"
+		onsubmit="return validateCallback(this, dialogAjaxDone);">
+		<input name="menu.id" type="hidden" value="${menu.id!}"> <input
+			name="menu.pid" type="hidden" value="${menu.pid!0}">
+		<div class="pageFormContent" layoutH="56">
+			<p>
+				<label> 菜单级别 </label> <input type="text" name="menu.menulevel"
+					value="${menu.menulevel!0}" class="required digits">
+			</p>
+			<p>
+				<label> 类别 </label> <select class="combox" id="menu_edit_type"
+					name="menu.type" class="required" val="${menu.type!}">
+					<#if menu.type?exists>	
+						<#if menu.type==0>		
+							<option value="0" selected="selected"  >导航栏</option>
+						<#else>
+							<option value="0" >导航栏</option>
+						</#if>
+						<#if menu.type==1 >
+							<option value="1" selected="selected"  >菜单栏</option>
+						<#else>
+							<option value="1" >菜单栏</option>
+						</#if>
+					<#else>
+							<option value="0" selected="selected" >导航栏</option>
+							<option value="1" >菜单栏</option>
+					</#if>		
+					</select>
+			</p>
+			<p>
+				<label> 显示方式 </label> <select class="combox" name="menu.target"
+					class="required" val="${menu.target!}">
+					<option value="0">tab页</option>
+					<option value="1">弹出窗口</option>
+				</select>
+			</p>
+			<p>
+				<label> 菜单名称 </label> <input type="text" name="menu.name"
+					value="${menu.name!}" class="required">
+			</p>
+			<p>
+				<label> URL </label> <input type="text" name="menu.url"
+					value="${menu.url!}">
+			</p>
+			<p>
+				<label> 页面编码 </label> <input type="text" name="menu.safecode"
+					value="${menu.safecode!}">
+			</p>
+			<p>
+				<label> rel </label> <input type="text" name="menu.rel"
+					value="${menu.rel!}">
+			</p>
+			<p>
+				<label> 图标 </label> <input type="text" name="menu.icon"
+					value="${menu.icon!}">
+			</p>
+			<p>
+				<label> 排序号 </label> <input type="text" name="menu.ordernum"
+					value="${menu.ordernum!0}" class="required digits">
+			</p>
+		</div>
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive">
+						<div class="buttonContent">
+							<button type="submit">保存</button>
+						</div>
+					</div></li>
+				<li>
+					<div class="button">
+						<div class="buttonContent">
+							<button type="button" class="close">取消</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,47 @@
+package net.dfrz.io.thread;
+
+public class DeatLockDemo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class DeatLockTest implements Runnable {
+
+	private boolean flag;
+
+	public DeatLockTest(boolean flag) {
+		super();
+		this.flag = flag;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		if(flag){
+			synchronized () {
+				
+				synchronized () {
+					
+				}
+			}
+		}
+		else{
+	synchronized () {
+				
+				synchronized () {
+					
+				}
+			}
+		}
+		
+		
+	}
+}

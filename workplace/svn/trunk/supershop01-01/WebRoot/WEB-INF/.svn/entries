@@ -1,0 +1,57 @@
+8
+
+dir
+303
+https://supershop01-01.googlecode.com/svn/trunk/supershop01-01/WebRoot/WEB-INF
+https://supershop01-01.googlecode.com/svn
+
+
+
+2013-02-25T13:01:24.040350Z
+240
+594937650@qq.com
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+77594a76-5b2b-1a52-1120-fdc55be98e2d
+
+proxool.xml
+file
+
+
+
+
+2013-03-02T05:38:04.125175Z
+ab7044f1c44bef962ab12163d51896ad
+2013-02-24T16:19:17.166673Z
+236
+pingdongyu@gmail.com
+has-props
+
+lib
+dir
+
+web.xml
+file
+
+
+
+
+2013-03-02T05:38:04.145175Z
+77f04fc11f44d9b8a8ea42196c6d281b
+2013-02-25T13:01:24.040350Z
+240
+594937650@qq.com
+has-props
+

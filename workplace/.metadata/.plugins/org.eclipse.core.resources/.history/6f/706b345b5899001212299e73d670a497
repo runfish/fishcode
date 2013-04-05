@@ -1,0 +1,23 @@
+package net.dfrz.test;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Global {
+	
+	public final static  int Global_pagesize=20;
+
+	
+	public static String getSysTime(String pattern){
+		
+		Date date = new Date();
+		if(pattern==null || pattern.equals("")){
+			pattern="yyyy-MM-dd";
+		}
+		DateFormat dateFormat = new SimpleDateFormat(pattern);
+		return dateFormat.format(date);
+		
+	}
+	
+}

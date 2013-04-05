@@ -1,0 +1,34 @@
+/**
+ * 
+ */
+package ping.dong.test;
+
+import java.util.concurrent.Exchanger;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int a = 13;
+		int b = 34;
+		exchange(a,b);
+		System.out.print(a+","+b);
+
+	}
+	public void exchange(int a,int b){
+		int  t ;
+		t = a;
+		a = b;
+		b = t;
+		
+	}
+
+}

@@ -1,0 +1,67 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import net.dfrz.supershop01.dao.CustomerDao;
+import net.dfrz.supershop01.domain.Customer;
+import net.dfrz.supershop01.utils.DBUtils;
+
+/**
+ * @author Administrator
+ *
+ */
+public class CustomerDaoJDBCImpl implements CustomerDao {
+
+	private static final String ADD_CUSTOMER = "insert into customer values(seq_customer.nextval,?,?,?,?,?,?,?,?)";
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.CustomerDao#add(net.dfrz.supershop01.domain.Customer)
+	 */
+
+	public void add(Customer customer) {
+		// TODO Auto-generated method stub
+		Connection conn = DBUtils.getInstance().getConn();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(ADD_CUSTOMER);
+			pstmt.setString(1, customer.getCustomerName());
+			pstmt.setString(2, customer.getCustomerPassword());
+			pstmt.setString(3, customer.getCustomerRealname());
+			pstmt.setDate(4, customer.getCustomerBirthday());
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.CustomerDao#getCustomerByName(java.lang.String)
+	 */
+
+	public Customer getCustomerByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.CustomerDao#updateCustomer(net.dfrz.supershop01.domain.Customer)
+	 */
+
+	public void updateCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

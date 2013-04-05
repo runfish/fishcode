@@ -1,0 +1,54 @@
+8
+
+dir
+1447
+svn://dfrz004.xicp.net/trunk/GoodMgrS/src/net/gdm/exception
+svn://dfrz004.xicp.net
+
+
+
+2012-04-23T09:12:37.611556Z
+144
+wenlr
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+ApplicateionException.java
+file
+
+
+
+
+2013-02-25T12:24:00.304361Z
+b1421cdc1ee8d69ec0e0b89b7556a34b
+2012-04-13T15:23:23.460644Z
+84
+lianch
+has-props
+
+DateAccessException.java
+file
+
+
+
+
+2013-02-25T12:24:00.324361Z
+d2aa2af1bc0bd9e5d49d02369adc77d6
+2012-04-23T09:12:37.611556Z
+144
+wenlr
+has-props
+

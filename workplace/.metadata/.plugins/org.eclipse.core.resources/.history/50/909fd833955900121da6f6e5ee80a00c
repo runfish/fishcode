@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.dao;
+
+import java.util.List;
+
+import net.dfrz.supershop01.domain.Goods;
+
+
+/**
+ * @author hhg0012
+ *
+ */
+public interface GoodsDao {
+	
+	void add(Goods goods);
+	void delete(Goods goods);
+	Goods getGoodsById(int goodsId);
+	void update(Goods goods);
+}

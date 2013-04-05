@@ -1,0 +1,27 @@
+package net.dfrz.supershop01.services;
+
+import java.util.List;
+
+import net.dfrz.supershop01.domain.Category;
+import net.dfrz.supershop01.domain.Goods;
+import net.dfrz.supershop01.servicesimpl.GoodsQueryHelper;
+import net.dfrz.supershop01.utils.Page;
+
+/**
+ * 
+ * @author YDP1205
+ *
+ */
+public interface GoodsService {
+
+	Goods getGoodsById(int goodsId);
+	
+	byte[] loadGoodsImageById(Integer goodsId);
+	List<Goods> loadAll();
+	List<Category> getSubCtg(int ctgPid);
+	List<Goods> getGoodsByBigCtgId(int ctgId);
+	
+	Page loadPagedGoods(Page page, GoodsQueryHelper helper);
+	Page getGoodsByBigCtgId(Page page, GoodsQueryHelper helper,int ctgId);
+	Page getGoodsBySubCtgId(Page page, GoodsQueryHelper helper,int subCtgId);
+}

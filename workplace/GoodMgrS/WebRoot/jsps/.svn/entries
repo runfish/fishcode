@@ -1,0 +1,63 @@
+8
+
+dir
+1447
+svn://dfrz004.xicp.net/trunk/GoodMgrS/WebRoot/jsps
+svn://dfrz004.xicp.net
+
+
+
+2012-04-25T04:15:42.002201Z
+158
+wenlr
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+user_order.jsp
+file
+
+
+
+
+2013-02-25T12:23:55.699354Z
+99188e1a46819cd36f8c0f4f8814a504
+2012-04-09T13:17:03.848626Z
+48
+wenlr
+has-props
+
+Welcome.jsp
+file
+
+
+
+
+2013-02-25T12:23:55.709354Z
+88a64e6fa1f2a91353a6136bf3d307b0
+2012-04-09T13:17:03.848626Z
+48
+wenlr
+has-props
+
+Admin
+dir
+
+dore
+dir
+
+fore
+dir
+

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <servlet-name>OrderMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.OrderMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GoodsMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.GoodsMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BigCtegoryMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.BigCtegoryMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AdmineMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.AdminMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>OrderItemMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.OrderItemMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UserMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.UserMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SmallCtegoryMgr</servlet-name>
+    <servlet-class>net.gdm.controller.sysadmin.SmallCtegoryMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForeGoodsMgr</servlet-name>
+    <servlet-class>net.gdm.controller.ForeGoodsMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForeUserMgr</servlet-name>
+    <servlet-class>net.gdm.controller.ForeUserMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForeOrderMgr</servlet-name>
+    <servlet-class>net.gdm.controller.ForeOrderMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForeOrderItemMgr</servlet-name>
+    <servlet-class>net.gdm.controller.ForeOrderItemMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForeShoppingCartMgr</servlet-name>
+    <servlet-class>net.gdm.controller.ForeShoppingCartMgr</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ForeSecurityMgr</servlet-name>
+    <servlet-class>net.gdm.controller.ForeSecurityMgr</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <servlet-mapping>
+    <servlet-name>OrderMgr</servlet-name>
+    <url-pattern>/servlet/ordermgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GoodsMgr</servlet-name>
+    <url-pattern>/servlet/goodsmgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BigCtegoryMgr</servlet-name>
+    <url-pattern>/servlet/bigctegorymgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdmineMgr</servlet-name>
+    <url-pattern>/servlet/adminemgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderItemMgr</servlet-name>
+    <url-pattern>/servlet/orderitemmgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserMgr</servlet-name>
+    <url-pattern>/servlet/usermgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SmallCtegoryMgr</servlet-name>
+    <url-pattern>/servlet/smallcategorymgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForeGoodsMgr</servlet-name>
+    <url-pattern>/fgoodsmgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForeUserMgr</servlet-name>
+    <url-pattern>/fusermgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForeOrderMgr</servlet-name>
+    <url-pattern>/fordermgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForeOrderItemMgr</servlet-name>
+    <url-pattern>/forderitemmgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForeShoppingCartMgr</servlet-name>
+    <url-pattern>/fshoppingcartmgr</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ForeSecurityMgr</servlet-name>
+    <url-pattern>/fsecuritymgr</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/jsps/fore/head.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

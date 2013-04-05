@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/dao
+END
+GoodsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/dao/GoodsDao.java
+END
+OrderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/dao/OrderDao.java
+END
+CustomerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/dao/CustomerDao.java
+END
+TrolleyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/dao/TrolleyDao.java
+END

@@ -1,0 +1,67 @@
+package net.dfrz.io.thread;
+
+class SaleTicket implements Runnable {
+
+	private int tickets = 500;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Thread#run()
+	 */
+	@Override
+	public void run() {
+
+		while (tickets>0) {
+			sale();
+		}
+	}
+
+	public synchronized void sale() {
+
+		if (tickets > 0) {
+			try {
+				Thread.sleep(10);
+				System.out.println(Thread.currentThread().getName()
+						+ "......sale....." + tickets--);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+
+	}
+
+}
+
+public class SaleDemo {
+
+	public static void main(String[] args) {
+		SaleTicket s1 = new SaleTicket();
+		SaleTicket s2 = new SaleTicket();
+
+		Thread t1 = new Thread(s1);
+		Thread t2 = new Thread(s1);
+		Thread t3 = new Thread(s1);
+		Thread t4 = new Thread(s1);
+		Thread t5 = new Thread(s1);
+		// SaleTicket s2 = new SaleTicket();
+		// SaleTicket s3 = new SaleTicket();
+		// SaleTicket s4 = new SaleTicket();
+		// SaleTicket s5 = new SaleTicket();
+
+		// s1.start();
+		// s1.start();
+		// s1.start();
+		// s1.start();
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+		t5.start();
+
+	}
+
+}

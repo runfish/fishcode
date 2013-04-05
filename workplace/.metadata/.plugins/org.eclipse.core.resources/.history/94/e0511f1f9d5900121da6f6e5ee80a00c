@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.servicesimpl;
+
+import net.dfrz.supershop01.services.GoodsService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class GoodsServiceImpl implements GoodsService {
+
+}

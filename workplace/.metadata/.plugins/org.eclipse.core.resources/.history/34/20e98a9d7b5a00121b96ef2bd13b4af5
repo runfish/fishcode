@@ -1,0 +1,254 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import net.dfrz.supershop01.dao.GoodsDao;
+import net.dfrz.supershop01.domain.Goods;
+import net.dfrz.supershop01.exception.DataAccessException;
+import net.dfrz.supershop01.servicesimpl.GoodsQueryHelper;
+import net.dfrz.supershop01.utils.DBUtils;
+
+
+/**
+ * @author YDP1205
+ *
+ */
+public class GoodsDaoJDBCImpl implements GoodsDao {
+
+	private final static String ADD_GOODS = "insert into goods values(seq_goods.nextval,?,?,?,?,?,?,?,Empty_BLOB()";
+	private static final String SQL_GETPIC="select goods_image from goods where goods_id=?";
+	
+	public void add(Goods goods) {
+		// TODO Auto-generated method stub
+		Connection conn = DBUtils.getInstance().getConn();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		try {
+			
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(ADD_GOODS);
+			pstmt.setInt(1, goods.getGoodsId());
+			pstmt.setString(2, goods.getGoodsName());
+			pstmt.setDouble(3, goods.getGoodsPrice());
+			pstmt.setString(4, goods.getGoodsIsEmpty());
+			pstmt.setString(5, goods.getGoodsDesc());
+			pstmt.setInt(6, goods.getGoodsCtgId());
+			pstmt.setInt(7, goods.getGoodsAdminId());
+			
+			pstmt.executeUpdate();
+			
+			pstmt=conn.prepareStatement("select goods_image from goods where goods_id=(select max(goods_id) from goods) for update");
+			rset=pstmt.executeQuery();
+			
+			if(rset.next()){
+				oracle.sql.BLOB blob = (oracle.sql.BLOB)rset.getBlob("goods_image");
+				
+				PrintStream ps = new PrintStream(blob.getBinaryOutputStream());
+				ps.write(goods.getGoodsImage());
+				
+				ps.flush();
+				ps.close();
+				
+			}
+			conn.commit();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			String detailMsg=null;
+			if(e.getMessage().indexOf("ORA-00001")!=-1) 
+				detailMsg="商品名称出现了雷同!";
+			throw new DataAccessException("商品信息增加失败,"+detailMsg);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DBUtils.getInstance().ReleaseRes(conn, pstmt, rset);
+		}
+	
+		
+	}
+
+
+	public void delete(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public Goods getGoodsById(int goodsId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	public void update(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+    public List<Goods> getScopedGoods(GoodsQueryHelper helper,int beginIndex, int endIndex) {
+		
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null; 
+		ResultSet rset=null;
+		List<Goods> goodsList=null;
+		
+		String sql="select * from ( select rownum rn,a.* from ( "+ this.buildSqlByHelper(helper)+" ) a where rownum<=? ) where rn>=?";
+		
+		System.out.println(sql);
+		
+		try {
+			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,endIndex);
+			pstmt.setInt(2, beginIndex);
+			rset=pstmt.executeQuery();
+			
+			goodsList=new ArrayList<Goods>();
+
+			
+			while(rset.next()){
+				Goods goods = new Goods();
+				
+				goods.setGoodsId(rset.getInt("goods-id"));
+				goods.setGoodsName(rset.getString("goods_name"));
+				goods.setGoodsPrice(rset.getDouble("goods_price"));
+				goods.setGoodsIsEmpty(rset.getString("goos_empty"));
+				goods.setGoodsDesc(rset.getString("goods_desc"));
+				goods.setGoodsQty(rset.getInt("goods_qty"));
+				goods.setGoodsCtgId(rset.getInt("goods_ctg_id"));
+				goods.setGoodsAdminId(rset.getInt("goods_admin_id"));
+				
+			
+				goodsList.add(goods);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			DBUtils.getInstance().ReleaseRes(conn, pstmt, rset);
+		}			
+		return goodsList;
+	}
+	
+    private String buildSqlByHelper(GoodsQueryHelper helper){
+  		
+  		String sql="select * from goods where 1=1";
+  		
+  		if(helper.getGoodsName()!=null&&helper.getGoodsName().trim().length()>0)
+  		{
+  			sql+=" and goods_name like '%"+helper.getGoodsName()+"%'";
+  		}
+  		if (helper.getGoodsCtgId()!=null)
+  		{
+			sql+=" and goods_ctg_id="+helper.getGoodsCtgId();
+		}
+  		if(helper.getGoodsIsEmpty()!=null && helper.getGoodsIsEmpty().trim().length()>0)
+  		{
+  			sql+=" and goods_empty='"+helper.getGoodsIsEmpty()+"'";
+  		}
+  		if(helper.getMinGoodsPrice()!=null){
+  			
+  			sql+="and goods_price >="+helper.getMinGoodsPrice();
+  		}
+  		if(helper.getMaxGoodsPrice()!=null){
+  			sql+="and goods_price <="+helper.getMaxGoodsPrice();
+  		}
+  		sql+=" order by goods_id";
+ 
+  		return sql;
+  		
+  	}
+    
+    public byte[] getGoodsImage(Integer goodsId) {
+		
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		byte[] goodsImage=null;
+		
+		try{
+		
+		   pstmt=conn.prepareStatement(SQL_GETPIC);
+		   pstmt.setInt(1, goodsId);
+		   rset=pstmt.executeQuery();
+		   
+		   
+		   if(rset.next())
+		   {
+			   java.sql.Blob blob = rset.getBlob("goods_image");
+			   if(blob!=null){
+			    InputStream inStream = blob.getBinaryStream();
+			    goodsImage = new byte[(int) blob.length()];
+				inStream.read(goodsImage);
+				inStream.close();	
+			   }
+		   }
+		   		
+		}catch(SQLException e)
+		{
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DBUtils.getInstance().ReleaseRes(conn, pstmt, rset);
+		}
+		return goodsImage;
+	}
+    
+    
+   public int countGoods(GoodsQueryHelper helper) {
+		
+		String sql=this.buildSqlByHelper(helper);
+		sql=sql.replace("*", "count(*) total");
+		sql=sql.substring(0, sql.indexOf("order"));
+		
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+		ResultSet rset=null;
+		Integer total=null;
+		
+		try{
+		   pstmt=conn.prepareStatement(sql);
+		   rset=pstmt.executeQuery();
+		   
+		   if(rset.next()){
+			  total=rset.getInt("total"); 
+		   }
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			DBUtils.getInstance().ReleaseRes(conn, pstmt, rset);
+		}	
+		
+		return total;
+	}
+
+    
+    
+    
+
+}

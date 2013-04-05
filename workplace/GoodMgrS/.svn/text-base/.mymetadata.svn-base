@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="GoodMgrS"
+  id="myeclipse.1333766037571"
+  context-root="/GoodMgrS"
+  j2ee-spec="5.0"
+  archive="GoodMgrS.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

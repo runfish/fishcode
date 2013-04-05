@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package net.dfrz;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Tester {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Thread t =new  Thread(new Mywork());
+		t.setName("tt-1");
+		t.start();
+		
+		int sum = 0;
+		for(int i=300;i<400;i++){
+			sum +=i;
+			if(i%10==0) Thread.yield();
+			System.out.println("Mywork.run()"+Thread.currentThread().getName()+"sum="+sum+"+"+i);
+		}
+		
+
+	}
+
+}

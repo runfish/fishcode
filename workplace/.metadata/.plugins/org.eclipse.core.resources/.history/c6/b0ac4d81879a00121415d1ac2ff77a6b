@@ -1,0 +1,45 @@
+package net.dfrz.io.thread;
+class SaleTicket extends Thread{
+
+	private int tickets = 1000;	
+	/* (non-Javadoc)
+	 * @see java.lang.Thread#run()
+	 */
+	@Override
+	public void run() {
+
+		sale();
+	}
+
+
+
+	public void sale() {
+
+		while (true) {
+
+			if (tickets > 0)
+				System.out.println(tickets--);
+		}
+
+	}
+	
+
+}
+
+public class SaleDemoSaleTicket{
+	
+	public static void main(String[] args) {
+		SaleTicket s1 = new SaleTicket();
+		SaleTicket s2 = new SaleTicket();
+		SaleTicket s3 = new SaleTicket();
+		SaleTicket s4 = new SaleTicket();
+		SaleTicket s5 = new SaleTicket();
+
+		s1.start();
+		s2.start();
+		s3.start();
+		s4.start();
+		s5.start();
+	}
+	
+}

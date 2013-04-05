@@ -1,0 +1,241 @@
+package net.dfrz.hotel.controller;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.lang3.StringUtils;
+
+import net.dfrz.hotel.domain.Hotel;
+import net.dfrz.hotel.exception.ApplicationException;
+import net.dfrz.hotel.service.HotelQueryHelper;
+import net.dfrz.hotel.service.HotelService;
+import net.dfrz.hotel.service.HotelServiceImpl;
+import net.dfrz.hotel.utils.Page;
+import net.dfrz.hotel.utils.PathUtils;
+
+public class HotelMgrServlet extends HttpServlet {
+
+	/**
+	 * Constructor of the object.
+	 */
+	public HotelMgrServlet() {
+		super();
+	}
+
+	/**
+	 * The doGet method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to get.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		//request.setCharacterEncoding("utf-8");
+		
+		//获得当前java系统临时文件存储目录，以方便系统在接收到上传来的文件的数据的时候，能在此地创建临时接收文件。
+		File tempFile=new File(System.getProperty("java.io.tmpdir"));
+		
+		DiskFileItemFactory factory=new DiskFileItemFactory(); //一个提交文件和一个提交字段，都叫做FileItem.
+		factory.setSizeThreshold(4096);
+		factory.setRepository(tempFile); //设置fileUpload在接收文件的时候，临时存放文件的目录。
+		
+		ServletFileUpload sfu=new ServletFileUpload(factory); 
+		//sfu是专门用servlet环境制作的过滤器，能够过滤request中存在的FileItem, 
+		sfu.setSizeMax(5000000); //上传文件体积限制
+		
+		List<FileItem> fileItems=null; 
+	
+		String act=null;
+		
+		if(sfu.isMultipartContent(request)) //判断request是否是多段提交
+		{
+			try {
+				fileItems=sfu.parseRequest(request);
+				for(FileItem item:fileItems)
+				{
+					if(item.isFormField() && item.getFieldName().equals("act"))
+                    {
+                    	act=item.getString("utf-8");
+                    	break;
+                    } 					
+				}
+			} catch (FileUploadException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		else
+		    act=request.getParameter("act").trim();		
+		
+		
+		
+		if(act.equals("input")){
+			request.getRequestDispatcher("../jsps/hotel/input_hotel.jsp").forward(request, response);
+		}
+		else if(act.equals("create")){
+			
+			Hotel hotel=new Hotel();
+			
+			for(FileItem item:fileItems)
+			{
+				if(item.isFormField() && item.getFieldName().equals("hotelname"))
+					hotel.setHotelName(item.getString("utf-8"));
+				else if(item.isFormField() && item.getFieldName().equals("hoteladdr"))
+					hotel.setHotelAddr(item.getString("utf-8"));
+				else if(item.isFormField() && item.getFieldName().equals("hotelphone"))
+					hotel.setHotelPhone(item.getString("utf-8"));
+				else if(!item.isFormField() && item.getFieldName().equals("hotelpic")){
+                    byte[] hotelPic=new byte[(int)item.getSize()];
+                    item.getInputStream().read(hotelPic, 0, (int)item.getSize());  
+                    hotel.setHotelPic(hotelPic);				
+				}
+			}
+			
+			HotelService hotelService=new HotelServiceImpl();
+			
+			try{
+			  hotelService.createHotel(hotel);
+			}catch(ApplicationException e){
+			   request.setAttribute("err", e.getMessage());
+			   request.getRequestDispatcher("../jsps/hotel/input_hotel.jsp").forward(request, response);
+			   return;
+			}
+			
+			response.sendRedirect(PathUtils.getPath(request,"action/hotelMgr?act=loadPagedHotel"));
+			
+		}
+		else if(act.equals("loadPagedHotel")){
+			
+			HotelQueryHelper helper=new HotelQueryHelper();
+			
+			String maxCount=request.getParameter("maxRoomCount");
+			if(StringUtils.isNotEmpty(maxCount)) //null,"","    "
+				 helper.setMaxRoomCount(Integer.parseInt(maxCount));
+			
+			String minCount=request.getParameter("minRoomCount");
+			if(StringUtils.isNotBlank(minCount))
+				 helper.setMinRoomCount(Integer.parseInt(minCount));
+			
+			Page page=new Page();
+			page.setPageSize(4);
+			
+			String pageNo=request.getParameter("pageNo");
+			if(StringUtils.isNotBlank(pageNo))
+				  page.setPageNo(Integer.parseInt(pageNo));
+			
+			HotelService hotelService=new HotelServiceImpl();
+			request.setAttribute("pagedHotel",hotelService.loadPagedHotel(page, helper));
+			
+			request.getRequestDispatcher("../jsps/hotel/list_hotel.jsp").forward(request, response);
+			
+		}
+		else if(act.equals("delete")){
+			
+			int hotelNo=Integer.parseInt(request.getParameter("hotelno"));
+			
+			HotelService hotelService=new HotelServiceImpl();
+			hotelService.deleteHotel(hotelNo);
+			
+			response.sendRedirect(PathUtils.getPath(request,"action/hotelMgr?act=loadPagedHotel"));
+		}
+		else if(act.equals("forUpdate")){
+			int hotelNo=Integer.parseInt(request.getParameter("hotelno"));
+			
+			HotelService hotelService=new HotelServiceImpl();
+			request.setAttribute("hotel",hotelService.getHotelByNo(hotelNo));
+			
+			request.getRequestDispatcher("../jsps/hotel/update_hotel.jsp").forward(request, response);
+		}
+		else if(act.equals("update")){
+			
+			Hotel hotel=new Hotel();
+			
+			for(FileItem item:fileItems)
+			{
+				if(item.isFormField() && item.getFieldName().equals("hotelname"))
+					hotel.setHotelName(item.getString("utf-8"));
+				else if(item.isFormField() && item.getFieldName().equals("hotelRoomCount"))
+					hotel.setHotelRoomCount(Integer.parseInt(item.getString("utf-8")));
+				else if(item.isFormField() && item.getFieldName().equals("hotelno"))
+					hotel.setHotelNo(Integer.parseInt(item.getString("utf-8")));
+				else if(item.isFormField() && item.getFieldName().equals("hoteladdr"))
+					hotel.setHotelAddr(item.getString("utf-8"));
+				else if(item.isFormField() && item.getFieldName().equals("hotelphone"))
+					hotel.setHotelPhone(item.getString("utf-8"));
+				else if(!item.isFormField() && item.getFieldName().equals("hotelpic")){
+                    byte[] hotelPic=new byte[(int)item.getSize()];
+                    if(hotelPic!=null && hotelPic.length>0){
+                      item.getInputStream().read(hotelPic, 0, (int)item.getSize());  
+                      hotel.setHotelPic(hotelPic);
+                    }
+				}
+			}
+			
+			HotelService hotelService=new HotelServiceImpl();			
+			hotelService.updateHotel(hotel);
+			
+			response.sendRedirect(PathUtils.getPath(request,"action/hotelMgr?act=loadPagedHotel"));
+			
+		}
+		else if(act.equals("getpic")){
+			
+			int hotelNo=Integer.parseInt(request.getParameter("hotelno"));
+			
+			HotelService hotelService=new HotelServiceImpl();
+			byte[] hotelPic=hotelService.loadHotelPicByNo(hotelNo);
+			
+			response.setContentType("image/jpeg");//设置返回的数据类型
+			ServletOutputStream sos=response.getOutputStream(); //获得与response相关的流
+			if(hotelPic!=null && hotelPic.length>0){
+			 sos.write(hotelPic); // 输出数据到客户端，并提交，flush.
+			}
+			else{
+			  String picPath=request.getRealPath("/")+"pics/default_hotel_pic.jpg";
+			  FileInputStream fis=new FileInputStream(picPath);
+			  byte[] defaultPic=new byte[fis.available()];
+			  fis.read(defaultPic);
+			  sos.write(defaultPic);
+			  fis.close();
+			}
+			sos.flush();
+			sos.close();
+			
+		}
+
+	}
+
+	/**
+	 * The doPost method of the servlet. <br>
+	 *
+	 * This method is called when a form has its tag value method equals to post.
+	 * 
+	 * @param request the request send by the client to the server
+	 * @param response the response send by the server to the client
+	 * @throws ServletException if an error occurred
+	 * @throws IOException if an error occurred
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+        doGet(request,response);
+	}
+
+}

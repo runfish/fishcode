@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 elements(s) to &apos;Hotel01/src&apos;&#x0D;&#x0A;- Original project: &apos;HotelSys10&apos;&#x0D;&#x0A;- Destination element: &apos;Hotel01/src&apos;&#x0D;&#x0A;- Original element: &apos;log4j.properties&apos;" description="Copy file" destination="=Hotel01/src" element1="src/log4j.properties" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1354887471483" units="0" version="1.0"/>
+</session>

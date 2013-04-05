@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.dao;
+import java.util.List;
+
+import net.dfrz.supershop01.domain.Category;
+import net.dfrz.supershop01.domain.Goods;
+import net.dfrz.supershop01.servicesimpl.GoodsQueryHelper;
+/**
+ * @author YDP1205
+ *
+ */
+public interface GoodsDao {
+	
+
+    List<Goods> getScopedGoods(GoodsQueryHelper helper,int beginIndex, int endIndex);
+    byte[] getGoodsImage(Integer goodsId);
+    int countGoods(GoodsQueryHelper helper);
+    int countGoods(GoodsQueryHelper helper,int ctgId);
+    Goods getGoodsById(Integer goodsId);
+    List<Goods> loadAll();
+    List<Category> getSubCtgs(int ctgPid);
+    List<Goods> getScopeListGoodsByBigCtgId(GoodsQueryHelper helper,int beginIndex, int endIndex,int ctgid);
+    List<Goods> getScopeListGoodsBySubCtgId(GoodsQueryHelper helper,int beginIndex, int endIndex,int subctgid);
+}

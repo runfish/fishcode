@@ -1,0 +1,9 @@
+package net.xiaoyu.dp.bridge;
+
+public class Gift {
+	
+	public String giftName;
+	
+	private String price;
+
+}

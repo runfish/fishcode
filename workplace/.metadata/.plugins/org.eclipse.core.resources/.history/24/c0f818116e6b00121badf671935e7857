@@ -1,0 +1,237 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file="/jsps/common/taglibs.jsp"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    
+ 
+    <title>商品信息录入</title>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<script type="text/javascript" src="<c:url value="/js/prototype.js"/>"></script>
+	
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/form.css"/>"/>
+
+   <script type="text/javascript">
+	
+	    var g_sel_cnt=0; //全局select元素数量,根据类别层次深度的不同，页面出现的类别select数量也不同。
+	    
+	    function buildSelector(ctgPid){
+
+	       new Ajax.Request(
+            encodeURI("goodsMgr?act=getSubCtgs&seed="+Math.random()+"&ctgPid="+parseInt(ctgPid)),
+            {
+              method:"get",
+              onComplete:function(xhr){
+              
+                  //如果子级别查询不存在，则不再继续创建下级类别
+                  if(xhr.responseText==""){ 
+                     //alert("不存在下级类别，操作停止!");
+                     return;
+                  }
+                  
+                  var subCtgInfo="-1:=请选择=|0:[顶级类别]|"+xhr.responseText;
+                  var optionStr=subCtgInfo.split("|");
+                                                   
+                  var sel=document.createElement("SELECT");
+                  g_sel_cnt++;//新增select
+                  sel.id="sel"+g_sel_cnt; //设置新创建的select的id.
+                  
+                  //设置该select的option
+                  
+                  for(i=0;i<optionStr.length;i++){
+                     if(i==1&&g_sel_cnt!=1) continue; //只有第一级select才封装顶级类别选项
+                     var opt=document.createElement("OPTION");
+                     opt.value=optionStr[i].split(":")[0];
+                     opt.text=optionStr[i].split(":")[1];
+                     sel.add(opt,sel.options[null]); //类似于append到select的options的末尾。
+                  }
+                  
+                  sel.onchange=function(){
+                  
+                                var ctgPid=this.options[this.selectedIndex].value;//要查询子类别的父类别                                                                                             
+                                var level=parseInt(this.id.charAt(3));//当前操作的select的级别
+                                                                
+                                
+                               // alert("level:"+level+",g_count:"+g_sel_cnt);
+                               // alert($('ctgSelectArea').childNodes.length);
+                                //for(i=0;i<$('ctgSelectArea').childNodes.length;i++)
+                                //  alert($('ctgSelectArea').childNodes[i].tagName);
+                                
+                                var delTimes=g_sel_cnt-level;
+                                for(i=1;i<=delTimes;i++){
+                                    $('ctgSelectArea').removeChild($('ctgSelectArea').lastChild);
+                                    g_sel_cnt--; //全局计数器减1
+                                }
+                                
+                                var ctgLinkStr="";
+                                for(i=1;i<=g_sel_cnt;i++){
+                                  with($('sel'+i)){
+                                    if(options[selectedIndex].value!=-1){
+                                      if(i==1) 
+                                        ctgLinkStr=options[selectedIndex].text;
+                                      else
+                                        ctgLinkStr+="->"+options[selectedIndex].text;
+                                    }
+                                  }
+                                }
+
+                               // alert(ctgLinkStr);
+                                                                
+                                if(ctgPid!=-1) buildSelector(ctgPid);
+                                
+                                if(ctgPid==-1 && level!=1){ //用户选择了非第一级"请选择",选择上一级值替代
+                                  with($('sel'+(--level))){
+                                     ctgPid=options[selectedIndex].value;
+                                  }
+                                }
+                                
+                                document.forms[0].goodsctgid.value=ctgPid;//设置隐藏域保存
+                                
+                                //$("ctglink").innerText=(ctgLinkStr==""?"[尚未设置]":ctgLinkStr);
+                                
+                               }
+                  
+                   $('ctgSelectArea').appendChild(sel);
+                                 
+              }
+            }            
+           );
+          
+	    }
+	    
+	    function validateEntry(inputFrm){
+	        with(inputFrm){
+	           //alert('asdsds');
+	          //  alert(goodsctgid.value);
+	           if(goodsname.value==""){
+	               alert('商品名称不能为空，请重新录入');
+	               ${'goodsname'}.select();
+	               return false;
+	           }
+	           if(goodsprice.value==""){
+	               alert('商品价格不能为空，请重新录入');
+	               ${'goodsprice'}.select();
+	               return false;
+	           }
+	           if(isNaN(goodsprice.value)){
+	              alert('商品价格必须为数字，请重新录入');
+	              ${'goodsprice'}.select();
+	              return false;
+	           }
+	           if(goodsqty.value==""){
+	              alert('商品库存数量不能为空，请重新录入');
+	              ${'goodsqty'}.select();
+	              return false;
+	           }
+	           if(isNaN(goodsqty.value)||(goodsqty.value<0)){
+	               alert('商品库存数量必须为大等于零的数字');
+	               ${'goodsqty'}.select();
+	               return false;
+	           }
+	       
+	        }
+	    }
+	//刷新图片
+	    function changeImage(object)
+	    {
+	       var picUrl=getPath(object);
+	       if(picUrl)
+	       {
+           		var goodsView=document.getElementById("goodsview");
+           		goodsView.src=picUrl;
+           }
+           else
+           {
+           		goodsView.src="/pics/default.gif";
+           }
+	    }
+	    
+	//获得上传文件的全路径
+    function getPath(object) 
+    { 
+      var browserName = navigator.appName;
+      var browserVer = parseInt ( navigator.appVersion );
+      if (( browserName == "Microsoft Internet Explorer") && (browserVer+5 >=9) )
+      {
+        object.select();
+        var button=document.getElementById("submit");
+        button.focus();
+        path= document.selection.createRange().text;
+        var array=path.split("\\");
+        var realPath=array.join("/");
+        return realPath;
+      }
+      else if (( browserName == "Microsoft Internet Explorer") && (browserVer+5 <9) )
+      {
+      	object.select();
+        path= document.selection.createRange().text;
+        var array=path.split("\\");
+        var realPath=array.join("/");
+        return realPath;
+      }
+      else 
+      {
+         alert("对不起图片预览功能暂时不支持非IE浏览器!");
+         return ;
+      }
+    } 
+	
+	</script>
+	
+  </head>
+  
+  <body onload="buildSelector(0)">
+     <div id="f_title">品信息登记</div>
+     <form action="<c:url value="/action/goodsMgr"/>" method="post"  onsubmit ="return validateEntry(this);" enctype="multipart/form-data">
+      <input type="hidden" name="act" value="create"/>
+      <input type="hidden" name="goodsadmin" value="${admin.administratorId}"/>
+        <div class="f_row">
+	          <span>商品名称:</span>
+	          <input type="text" name="goodsname" size="20" value="${param.goodsname}"/>
+	    </div>
+	    
+	    <div class="f_row">
+	          <span>商品单价:</span>
+	          <input type="text" name="goodsprice" size="20" value="${param.goodsprice}"/>
+	    </div>
+	 
+	    <input type="hidden" name="goodsctgid"/>
+	    <div id="ctgSelectArea" class="f_row" "><span class="rowHeader">商品类别:</span></div>
+	    
+	    <div class="f_row">
+	         <span>商品库存数量</span>
+	         <input type="text" name="goodsqty" size="20" value="${param.goodsqty}"/>
+	    </div>
+	    
+	    <div id="imagepath" class="f_row">
+	          <span style="margin-left:55px;">
+	          <image id="goodsview" width="200px" height="160px" src="<c:url value="/pics/default.gif"/>"/></span><br/>
+	          <span>商品图片:</span>
+	          <input type="file" id="goodsimage" name="goodsimage" size="60" onchange="changeImage(this);"/>
+	   </div>
+	   
+	   <div class="f_row" >
+	       <span>商品说明</span>
+	     <textarea rows="6" cols="50" name="goodsdesc" >${param.goodsdesc}</textarea>
+	     
+	   </div>
+	    
+	  	<div class="f_row">
+	          <input id="submit" type="submit" value="保存信息"/>        	       
+	    </div>
+     </form>
+    <c:if test="${not empty err}">
+       <script type="text/javascript">
+         alert('${err}');
+       </script>
+    </c:if>
+  </body>
+</html>

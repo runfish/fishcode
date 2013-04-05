@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import net.dfrz.supershop01.dao.GoodsDao;
+import net.dfrz.supershop01.domain.Goods;
+
+/**
+ * @author YDP1205
+ *
+ */
+public class GoodsDaoJDBCImpl implements GoodsDao {
+
+	@Override
+	public void add(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Goods getGoodsById(int goodsId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

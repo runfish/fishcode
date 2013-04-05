@@ -1,0 +1,153 @@
+
+2012-11-29 15:23:15
+[INFO]-[Thread: main]-[org.apache.shiro.web.servlet.IniShiroFilter.configure()]: Null or empty configuration specified via 'config' init-param.  Checking path-based configuration.
+
+2012-11-29 15:23:15
+[INFO]-[Thread: main]-[org.apache.shiro.web.servlet.IniShiroFilter.configure()]: Null or empty configuration specified via 'config' or 'configPath' filter parameters.  Trying the default /WEB-INF/shiro.ini file.
+
+2012-11-29 15:23:15
+[INFO]-[Thread: main]-[org.apache.shiro.web.servlet.IniShiroFilter.configure()]: Null or empty configuration specified via 'config' or 'configPath' filter parameters.  Trying the default classpath:shiro.ini file.
+
+2012-11-29 15:23:15
+[DEBUG]-[Thread: main]-[org.apache.shiro.io.ResourceUtils.loadFromClassPath()]: Opening resource from class path [shiro.ini]
+
+2012-11-29 15:23:15
+[DEBUG]-[Thread: main]-[org.apache.shiro.config.IniFactorySupport.resolveIni()]: Null or empty Ini instance.  Falling back to the default classpath:shiro.ini file.
+
+2012-11-29 15:23:15
+[DEBUG]-[Thread: main]-[org.apache.shiro.io.ResourceUtils.loadFromClassPath()]: Opening resource from class path [shiro.ini]
+
+2012-11-29 15:23:15
+[DEBUG]-[Thread: main]-[org.apache.shiro.config.IniFactorySupport.createInstance()]: No populated Ini available.  Creating a default instance.
+
+2012-12-07 15:35:00
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Java version: 1.6.0_37
+
+2012-12-07 15:35:00
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Java vendor: Sun Microsystems Inc.
+
+2012-12-07 15:35:00
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Java class path: I:\workspace\oa\build\classes;I:\workspace\oa\WebContent\WEB-INF\lib\JFinal-1.1.5-bin-with-src.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-beanutils-1.8.3.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-httpclient-3.1.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-lang-2.4.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-logging-1.1.1.jar;I:\workspace\oa\WebContent\WEB-INF\lib\cos-26Dec2008.jar;I:\workspace\oa\WebContent\WEB-INF\lib\druid-0.2.6.jar;I:\workspace\oa\WebContent\WEB-INF\lib\ehcache-core-2.5.2.jar;I:\workspace\oa\WebContent\WEB-INF\lib\freemarker-2.3.16.jar;I:\workspace\oa\WebContent\WEB-INF\lib\gson-2.2.2.jar;I:\workspace\oa\WebContent\WEB-INF\lib\jetty-server-6.1.26.jar;I:\workspace\oa\WebContent\WEB-INF\lib\jfinal-ext-1.1-1.6.jar;I:\workspace\oa\WebContent\WEB-INF\lib\jstl-1.2.jar;I:\workspace\oa\WebContent\WEB-INF\lib\log4j-1.2.16.jar;I:\workspace\oa\WebContent\WEB-INF\lib\mysql-connector-java-5.1.20-bin.jar;I:\workspace\oa\WebContent\WEB-INF\lib\shiro-all-1.2.0.jar;I:\workspace\oa\WebContent\WEB-INF\lib\slf4j-api-1.6.1.jar;I:\workspace\oa\WebContent\WEB-INF\lib\slf4j-log4j12-1.6.4.jar;I:\workspace\oa\WebContent\WEB-INF\classes
+
+2012-12-07 15:35:00
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Operating system name: Windows NT (unknown)
+
+2012-12-07 15:35:00
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Operating system architecture: amd64
+
+2012-12-07 15:35:00
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Operating system version: 6.2
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SUN 1.6: SUN (DSA key/parameter generation; DSA signing; SHA-1, MD5 digests; SecureRandom; X.509 certificates; JKS keystore; PKIX CertPathValidator; PKIX CertPathBuilder; LDAP, Collection CertStores, JavaPolicy Policy; JavaLoginConfig Configuration)
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunRsaSign 1.5: Sun RSA signature provider
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunJSSE 1.6: Sun JSSE provider(PKCS12, SunX509 key/trust factories, SSLv3, TLSv1)
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunJCE 1.6: SunJCE Provider (implements RSA, DES, Triple DES, AES, Blowfish, ARCFOUR, RC2, PBE, Diffie-Hellman, HMAC)
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunJGSS 1.0: Sun (Kerberos v5, SPNEGO)
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunSASL 1.5: Sun SASL provider(implements client mechanisms for: DIGEST-MD5, GSSAPI, EXTERNAL, PLAIN, CRAM-MD5; server mechanisms for: DIGEST-MD5, GSSAPI, CRAM-MD5)
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: XMLDSig 1.0: XMLDSig (DOM XMLSignatureFactory; DOM KeyInfoFactory)
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunPCSC 1.6: Sun PC/SC provider
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.useragent = Jakarta Commons-HttpClient/3.1
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.version = HTTP/1.1
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.connection-manager.class = class org.apache.commons.httpclient.SimpleHttpConnectionManager
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.cookie-policy = default
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.element-charset = US-ASCII
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.content-charset = ISO-8859-1
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.method.retry-handler = org.apache.commons.httpclient.DefaultHttpMethodRetryHandler@16a4e743
+
+2012-12-07 15:35:01
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.dateparser.patterns = [EEE, dd MMM yyyy HH:mm:ss zzz, EEEE, dd-MMM-yy HH:mm:ss zzz, EEE MMM d HH:mm:ss yyyy, EEE, dd-MMM-yyyy HH:mm:ss z, EEE, dd-MMM-yyyy HH-mm-ss z, EEE, dd MMM yy HH:mm:ss z, EEE dd-MMM-yyyy HH:mm:ss z, EEE dd MMM yyyy HH:mm:ss z, EEE dd-MMM-yyyy HH-mm-ss z, EEE dd-MMM-yy HH:mm:ss z, EEE dd MMM yy HH:mm:ss z, EEE,dd-MMM-yy HH:mm:ss z, EEE,dd-MMM-yyyy HH:mm:ss z, EEE, dd-MM-yyyy HH:mm:ss z]
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Java version: 1.6.0_37
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Java vendor: Sun Microsystems Inc.
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Java class path: I:\workspace\oa\build\classes;I:\workspace\oa\WebContent\WEB-INF\lib\JFinal-1.1.5-bin-with-src.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-beanutils-1.8.3.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-httpclient-3.1.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-lang-2.4.jar;I:\workspace\oa\WebContent\WEB-INF\lib\commons-logging-1.1.1.jar;I:\workspace\oa\WebContent\WEB-INF\lib\cos-26Dec2008.jar;I:\workspace\oa\WebContent\WEB-INF\lib\druid-0.2.6.jar;I:\workspace\oa\WebContent\WEB-INF\lib\ehcache-core-2.5.2.jar;I:\workspace\oa\WebContent\WEB-INF\lib\freemarker-2.3.16.jar;I:\workspace\oa\WebContent\WEB-INF\lib\gson-2.2.2.jar;I:\workspace\oa\WebContent\WEB-INF\lib\jetty-server-6.1.26.jar;I:\workspace\oa\WebContent\WEB-INF\lib\jfinal-ext-1.1-1.6.jar;I:\workspace\oa\WebContent\WEB-INF\lib\jstl-1.2.jar;I:\workspace\oa\WebContent\WEB-INF\lib\log4j-1.2.16.jar;I:\workspace\oa\WebContent\WEB-INF\lib\mysql-connector-java-5.1.20-bin.jar;I:\workspace\oa\WebContent\WEB-INF\lib\shiro-all-1.2.0.jar;I:\workspace\oa\WebContent\WEB-INF\lib\slf4j-api-1.6.1.jar;I:\workspace\oa\WebContent\WEB-INF\lib\slf4j-log4j12-1.6.4.jar;I:\workspace\oa\WebContent\WEB-INF\classes
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Operating system name: Windows NT (unknown)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Operating system architecture: amd64
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: Operating system version: 6.2
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SUN 1.6: SUN (DSA key/parameter generation; DSA signing; SHA-1, MD5 digests; SecureRandom; X.509 certificates; JKS keystore; PKIX CertPathValidator; PKIX CertPathBuilder; LDAP, Collection CertStores, JavaPolicy Policy; JavaLoginConfig Configuration)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunRsaSign 1.5: Sun RSA signature provider
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunJSSE 1.6: Sun JSSE provider(PKCS12, SunX509 key/trust factories, SSLv3, TLSv1)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunJCE 1.6: SunJCE Provider (implements RSA, DES, Triple DES, AES, Blowfish, ARCFOUR, RC2, PBE, Diffie-Hellman, HMAC)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunJGSS 1.0: Sun (Kerberos v5, SPNEGO)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunSASL 1.5: Sun SASL provider(implements client mechanisms for: DIGEST-MD5, GSSAPI, EXTERNAL, PLAIN, CRAM-MD5; server mechanisms for: DIGEST-MD5, GSSAPI, CRAM-MD5)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: XMLDSig 1.0: XMLDSig (DOM XMLSignatureFactory; DOM KeyInfoFactory)
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.HttpClient.<clinit>()]: SunPCSC 1.6: Sun PC/SC provider
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.useragent = Jakarta Commons-HttpClient/3.1
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.version = HTTP/1.1
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.connection-manager.class = class org.apache.commons.httpclient.SimpleHttpConnectionManager
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.cookie-policy = default
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.element-charset = US-ASCII
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.protocol.content-charset = ISO-8859-1
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.method.retry-handler = org.apache.commons.httpclient.DefaultHttpMethodRetryHandler@bc92535
+
+2012-12-07 15:38:14
+[DEBUG]-[Thread: main]-[org.apache.commons.httpclient.params.DefaultHttpParams.setParameter()]: Set parameter http.dateparser.patterns = [EEE, dd MMM yyyy HH:mm:ss zzz, EEEE, dd-MMM-yy HH:mm:ss zzz, EEE MMM d HH:mm:ss yyyy, EEE, dd-MMM-yyyy HH:mm:ss z, EEE, dd-MMM-yyyy HH-mm-ss z, EEE, dd MMM yy HH:mm:ss z, EEE dd-MMM-yyyy HH:mm:ss z, EEE dd MMM yyyy HH:mm:ss z, EEE dd-MMM-yyyy HH-mm-ss z, EEE dd-MMM-yy HH:mm:ss z, EEE dd MMM yy HH:mm:ss z, EEE,dd-MMM-yy HH:mm:ss z, EEE,dd-MMM-yyyy HH:mm:ss z, EEE, dd-MM-yyyy HH:mm:ss z]

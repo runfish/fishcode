@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/291/trunk/supershop01-01/src/net/dfrz/supershop01/controller
+END
+GoodsServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/291/trunk/supershop01-01/src/net/dfrz/supershop01/controller/GoodsServlet.java
+END
+ShoppingCartServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/242/trunk/supershop01-01/src/net/dfrz/supershop01/controller/ShoppingCartServlet.java
+END
+DealItemServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/240/trunk/supershop01-01/src/net/dfrz/supershop01/controller/DealItemServlet.java
+END
+DealServlet.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/243/trunk/supershop01-01/src/net/dfrz/supershop01/controller/DealServlet.java
+END

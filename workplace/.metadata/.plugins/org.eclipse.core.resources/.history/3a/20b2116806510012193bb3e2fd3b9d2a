@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>查看变量类型</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+   
+   
+
+    
+
+  </head>
+  
+  <body>
+   <script type="text/javascript">
+    var a =2,  b ="abc", c =true;  
+    //声明各简单变量，var 适用于变量声明的关键字
+    var objA =new Number(2);
+    var objB =new String("abc");
+    var objC =new Boolean(true);
+    //声明对象通常使用new 关键字
+    //以下使用document.write()输出结果
+    document.write("变量a类型："+typeof(a)+"<br>");
+    document.write("变量b类型："+typeof(b)+"<br>");
+    document.write("变量c类型："+typeof(c)+"<br>");
+    document.write("变量objA类型："+typeof(objA)+"<br>");
+    document.write("变量objB类型："+typeof(objB)+"<br>");
+    document.write("变量objC类型："+typeof(objC)+"<br>");
+    
+    function square(x){
+    
+      return x*x;
+    
+    }
+    document.write("函数square："+square+"<br>");
+    document.write("67*67="+square(67)+"<br>");
+
+    var image = new Object();
+    image.width=200;
+    image.draw=function(){
+    
+     document.write("drawing!!");
+    }
+    document.write("使用点操作符访问方式访问image的属性：<br>image.width"+image.width+"<br>");
+    //以访问数组元素的方式访问image的属性
+    document.write("image[\"width\"]:"+image["width"]+"<br>");
+    document.write("只能使用点操作符来访问数组元素的方式调用image的方法<br>");
+    image.draw();
+    
+    var widthStr = "width";
+    document.write("<br>"+image[widthStr]);
+    
+    var a =new Array();
+    a[0] = 3.1425;
+    a[1] = "hehe";
+    a[2] = true;
+    a[3] = {x:1,y:2};
+    
+    for(var i in a){
+      document.write("<br>"+a[i]+"<br>");
+   }
+   var today = new Date();
+   
+   var day =today.getDay();
+   document.write("今天是："+today.toLocaleString()+"<br>");
+   document.write("day="+day+"<br>");
+   if(day==5){
+   
+   document.write("今天是星期五哦！");
+   switch(day){
+   case 1:
+     document.write("今天是星期一");
+   case 5:
+     document.write("今天是星期五1");
+   
+   }
+   var count = 10;
+   while(count>5){
+   document.write("循环输出："+count+"<br>");
+   count--;
+   }
+  <!-- 
+   function factorial(x){
+      if(x<0 || isNaN(x)) throw new Error("x 不能为负数！");
+      for(var f=1; x>1; f*=x,x--);
+      return f;
+   }
+   try{
+     var n =prompt("请输入一个正整数！","");
+     var f=factorial(n);
+     alert(n +"!="+f);
+   
+   }catch(ex){
+   alert(ex.message);
+   }
+-->
+   
+   
+    
+    
+    </script>
+  </body>
+</html>

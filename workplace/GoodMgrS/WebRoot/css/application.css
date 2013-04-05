@@ -1,0 +1,14 @@
+body,form,div,span,table,tr,td,input,textarea,select,ul,li,button,li {
+	font-family: Verdana,Arial, Tahoma, sans-serifarial, Helvetica;
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+	color: black;
+	background: #ffffff;
+}
+.linkspan{
+   color:blue;
+   text-decoration:underline;
+   cursor:hand;
+}

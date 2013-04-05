@@ -1,0 +1,29 @@
+/**
+ * 
+ */
+package net.dfrz.jiaqiang;
+
+/**
+ * @author Administrator
+ *
+ */
+@Dfrz
+public class AnnotationTest {
+
+	/**
+	 * @param args
+	 */
+	
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.runFinalizersOnExit(true);
+		if(AnnotationTest.class.isAnnotationPresent(Dfrz.class)){
+			
+			Dfrz annotation = (Dfrz)AnnotationTest.class.getAnnotation(Dfrz.class);
+			System.out.println(annotation);
+		}//检查这个类上的注解示是否存在
+
+	}
+
+}

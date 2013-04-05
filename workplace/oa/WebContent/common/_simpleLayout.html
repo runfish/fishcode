@@ -1,0 +1,42 @@
+<#macro simpleForm actionUrl>
+	<form id="pagerForm" method="post" action="${actionUrl}">
+ 		<input type="hidden" name="pageNum" value="1" />
+ 		<input type="hidden" name="numPerPage" value="${page.pageSize}" />
+	</form>
+</#macro>
+<#macro pagination>
+	<div class="panelBar">
+		<div class="pages">
+			<span>显示</span>
+			<select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+			<#if page.pageSize==5>		
+				<option value="5" selected="selected"   >5</option>
+				<#else>
+				<option value="5" >5</option>
+			</#if>
+			<#if page.pageSize==10>		
+				<option value="10" selected="selected"   >10</option>
+				<#else>
+				<option value="10" >10</option>
+			</#if>
+			<#if page.pageSize==15>		
+				<option value="15" selected="selected"   >15</option>
+				<#else>
+				<option value="15" >15</option>
+			</#if>
+			<#if page.pageSize==20>		
+				<option value="20" selected="selected"   >20</option>
+				<#else>
+				<option value="20" >20</option>
+			</#if>
+			</select>
+			<span>条，共${page.totalRow!}条/${page.totalPage!}页&nbsp;</span>
+		</div>
+		<div class="pagination"  targetType="navTab" totalCount="${page.totalRow}" numPerPage="${page.pageSize}" pageNumShown="10" currentPage="${page.pageNumber}"></div>
+	</div>
+</#macro>
+<#macro simpleLayout actionUrl>
+	<@simpleForm actionUrl=actionUrl/>
+	<#nested>
+	<@pagination/>
+</#macro>

@@ -1,0 +1,65 @@
+package net.dfrz.smmgr01.domain;
+
+public class Goods extends ObjectValue{
+	
+	/**
+	 * 商品   (CRUD)
+       属性:  商品编号
+            商品名称
+            商品单价
+            商品所属类别
+            商品来源 (自产*，代售，厂家直销，自营） (单选)
+            商品存储条件 （冷藏*，保险剂，保鲜薄膜，定期整理*)  (多选)
+            商品状态 (上架，未上架*) (单选)
+	 */
+	private int goodsId;
+	private String goodsName;
+	private double goodsPrice;
+	private int ctgId;
+	private String src;
+	private String[]goodsStoreCondition;
+	private String status;
+	
+	public int getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(int goodsId) {
+		this.goodsId = goodsId;
+	}
+	public String getGoodsName() {
+		return goodsName;
+	}
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+	public double getGoodsPrice() {
+		return goodsPrice;
+	}
+	public void setGoodsPrice(double goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
+	public int getCtgId() {
+		return ctgId;
+	}
+	public void setCtgId(int ctgId) {
+		this.ctgId = ctgId;
+	}
+	public String getSrc() {
+		return src;
+	}
+	public void setSrc(String src) {
+		this.src = src;
+	}
+	public String[]getGoodsStoreCondition() {
+		return goodsStoreCondition;
+	}
+	public void setGoodsStoreCondition(String[]goodsStoreCondition) {
+		this.goodsStoreCondition = goodsStoreCondition;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+}

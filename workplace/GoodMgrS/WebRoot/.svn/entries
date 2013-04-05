@@ -1,0 +1,62 @@
+8
+
+dir
+1447
+svn://dfrz004.xicp.net/trunk/GoodMgrS/WebRoot
+svn://dfrz004.xicp.net
+
+
+
+2012-04-25T04:15:42.002201Z
+158
+wenlr
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+jsps
+dir
+
+META-INF
+dir
+
+index.jsp
+file
+
+
+
+
+2013-02-25T12:23:58.502358Z
+eeaff70c88d02f76d125e1ef2a7e7c9f
+2012-04-09T13:17:03.848626Z
+48
+wenlr
+has-props
+
+PSD
+dir
+
+WEB-INF
+dir
+
+css
+dir
+
+pic
+dir
+
+js
+dir
+

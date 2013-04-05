@@ -1,0 +1,236 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import net.dfrz.supershop01.dao.OrderDao;
+import net.dfrz.supershop01.domain.Order;
+import net.dfrz.supershop01.exception.DataAccessException;
+import net.dfrz.supershop01.servicesimpl.OrderQuryHelper;
+import net.dfrz.supershop01.utils.DButils;
+import net.dfrz.supershop01.utils.Page;
+/**
+ * Project: supershop01-02
+ * ClassName: OrderDaoJDBCImpl                                                        
+ * Module ID: 4.6  
+ * Comments: 在数据层为订单类对象提供数据删除，修改，分页显示的功能,OrderDao的实现类  
+ * JDK :jdk1.6.0_10 
+ * Create Date： 2013-1-8
+ * @see String
+ * @see java.sql.SQLException
+ * @see java.sql.PreparedStatement
+ * @see java.sql.ResultSet
+ * @see java.sql.Connection
+ * @see java.util.ArrayList
+ * @see net.dfrz.supershop01.dao.OrderDao
+ * @see net.dfrz.supershop01.domain.Order;
+ * @see net.dfrz.supershop01.exception.DataAccessException
+ * @see net.dfrz.supershop01.servicesimpl.OrderQuryHelper;
+ * @see net.dfrz.supershop01.utils.DButils
+ * @see net.dfrz.supershop01.utils.Page
+ * @see #UPDATE_ORDER
+ * @see #DELETE_ORDER
+ *@see #buildSqlByHelper(OrderQuryHelper)
+ *@author J1205-HongHG
+ *@version Version 5
+ */
+public class OrderDaoJDBCImpl implements OrderDao {
+
+	/**
+	 * 订单SQL删除语句
+	 */
+	private static final String DELETE_ORDER="delete from order where order_id=?";
+	/**
+	 * 订单SQL更新语句
+	 */
+	private static final String UPDATE_ORDER="update order set order_date=?,order_sum=?,order_goods_qty=?,order_goods_id=?,order_customer_id=?,order_admin_id=?, order_status=? where order_id=?";
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.OrderDao#delete(net.dfrz.supershop01.domain.Order)
+	 */
+	public void delete(Order order) {
+		// TODO Auto-generated method stub
+
+		/**
+		 * 获取数据库连接
+		 */
+		Connection conn=DButils.getInstance().getConn();
+		/**
+		 * 准备数据库SQL语句
+		 */
+		PreparedStatement pstmt=null;
+		
+		try 
+		{
+			pstmt=conn.prepareStatement(DELETE_ORDER);
+			pstmt.setInt(1, order.getOrderId());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DataAccessException("订单信息删除失败!");
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.OrderDao#loadPage(net.dfrz.supershop01.utils.Page, net.dfrz.supershop01.servicesimpl.OrderQuryHelper)
+	 */
+	public Page loadPage(Page page, OrderQuryHelper helper) {
+		// TODO Auto-generated method stub
+		/**
+		 * 获取数据库连接
+		 */
+		Connection conn=DButils.getInstance().getConn();
+		/**
+		 * 准备数据库SQL语句
+		 */
+		PreparedStatement pstmt=null;
+		/**
+		 * 数据库数据在内存中的存放对象
+		 */
+		ResultSet rset=null;
+		/**
+		 * 分页查询SQL语句
+		 */
+		String sql="select * from ( select rownum rn,a.* from ( "+ this.buildSqlByHelper(helper)+" ) a where rownum<=? ) where rn>=?";
+		/**
+		 * 存放从数据库中获取的订单对象的ArrayList数组
+		 */
+		ArrayList<Order>orderList=new ArrayList<Order>();
+		/**
+		 * 封装订单信息的订单对象
+		 */
+		Order order=null;
+		
+		try 
+		{
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1,page.getEndIndex());
+			pstmt.setInt(2, page.getStartIndex());
+			
+			rset=pstmt.executeQuery();
+			
+			while(rset.next())
+			{
+				order=new Order();
+				order.setOrderId(rset.getInt("order_id"));
+				order.setOrderDate(rset.getDate("order_date"));
+				order.setOrderGoodsQty(rset.getInt("order_goods_qty"));
+				order.setOrderSum(rset.getDouble("order_sum"));
+				order.setOrderGoodsId(rset.getInt("order_goods_id"));
+				order.setOrderCustomerId(rset.getInt("order_customer_id"));
+				order.setOrderAdminId(rset.getInt("order_admin_id"));
+				order.setOrderStatus(rset.getString("order_status"));
+				
+				orderList.add(order);
+			}
+			
+			page.setPageContent(orderList);
+			
+			
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return page;
+	}
+ 
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.OrderDao#getOrderById(java.lang.Integer)
+	 */
+	public Order getOrderById(Integer orderId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.OrderDao#update(net.dfrz.supershop01.domain.Order)
+	 */
+	public void update(Order order) {
+		// TODO Auto-generated method stub
+		/**
+		 * 获取数据库连接
+		 */
+		Connection conn=DButils.getInstance().getConn();
+		/**
+		 * 准备数据库SQL语句
+		 */
+		PreparedStatement pstmt=null;
+		try
+		{
+			pstmt=conn.prepareStatement("UPDATE_ORDER");
+		
+			pstmt.setDate(1,order.getOrderDate());
+			pstmt.setDouble(2,order.getOrderSum());
+			pstmt.setInt(3,order.getOrderGoodsQty());
+			pstmt.setInt(4, order.getOrderGoodsId());
+			pstmt.setInt(5, order.getOrderCustomerId());
+			pstmt.setInt(6, order.getOrderAdminId());
+			pstmt.setInt(7, order.getOrderId());
+			pstmt.setString(8, order.getOrderStatus());
+			
+			pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new DataAccessException("订单信息修改失败!");
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.dao.OrderDao#countOrder(net.dfrz.supershop01.servicesimpl.OrderQuryHelper)
+	 */
+	public int countOrder(OrderQuryHelper helper) {
+			
+			String sql=this.buildSqlByHelper(helper);
+			sql=sql.replace("*", "count(*) total");
+			sql=sql.substring(0, sql.indexOf("order"));
+			Connection conn=DButils.getInstance().getConn();
+			PreparedStatement pstmt=null;
+			ResultSet rset=null;
+			Integer total=null;
+			
+			try{
+			   pstmt=conn.prepareStatement(sql);
+			   rset=pstmt.executeQuery();
+			   
+			   if(rset.next()){
+				  total=rset.getInt("total"); 
+			   }
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				DButils.getInstance().releaseRes(conn, pstmt, rset);
+			}	
+			
+			return total;
+		}
+	/**
+	 * 商品订单组合查询的SQL语句生成器
+	 * @param helper -商品订单组合查询语句的条件的封装对象
+	 * @return String
+	 */
+	private String buildSqlByHelper(OrderQuryHelper helper){
+			
+			String sql="select * from order where 1=1";
+			
+			
+			sql+=" order by goods_id";
+	
+			return sql;
+			
+		}
+}

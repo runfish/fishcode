@@ -1,0 +1,13 @@
+package net.dfrz.smmgr01.dao;
+import java.util.List;
+
+import net.dfrz.smmgr01.domain.Category;
+
+public interface CategoryDao {
+
+	void add(Category ctg);
+	void delete(Category ctg);
+	Category getGoodsById(int ctgId);
+	void update(Category ctg);
+	List loadAll();
+}

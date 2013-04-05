@@ -1,0 +1,153 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ include file="/jsps/common/taglibs.jsp"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    
+    <title>商品信息列表</title>   
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/application.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/list.css"/>">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/form.css"/>">
+	<script type="text/javascript" src="<c:url value="/js/common.js"/>"></script>
+  
+  	<script type="text/javascript">
+	    
+	    function doQuery(pageno)
+         {
+           if(pageno<1 || pageno>${pagedGoods.totalPageNum})
+           {
+              alert("页号超出范围，有效范围：[1-${pagedGoods.totalPageNum}]!");
+              ${'pageNo'}.select();
+              return;
+           }
+           
+           var f=document.forms[0];
+           f.action=f.action+"&pageNo="+pageno;
+           f.submit();
+           //location.href="<c:url value="/goodsMgr?act=loadall"/>&pageNo="+pageno;
+         }
+	    function forUqdate(goodsId)
+	    {
+	       location.href="<c:url value="/goodsMgr?act=forUpdate"/>&goodsid="+goodsId;
+	    }
+	    
+	    function removeGoods(goodsId,goodsName)
+	    {
+	        if(confirm("确认要删除商品["+goodsName+"]的信息吗?"))
+	        {
+				location.href="goodsMgr?act=del&goodsid="+goodsId;
+	        }
+	    }
+	</script>
+	</head>
+  <body>
+   <div class="f_row">
+     <form action="goodsMgr?act=loadPageGoods" method="post">
+     <div>
+      <span>商品名称：</span>
+            <input type="text" name="qurygoodsname" value="${param.qurygoodsname}"/>
+      <span>商品价格:</span>
+	        <input type="text" class="text" name="qurymingoodsprice" size=4 value="${param.qurymingoodsprice}"/> - 
+			<input type="text" class="text" name="qurymaxgoodsprice" size=4 value="${param.qurymaxgoodsprice}"/>&nbsp;
+      <span>商品类别：</span>
+         <select name="qurygoodsctgid">
+              <option value="">==请选择==</option>
+            <c:forEach var="ctg" items="${ctglist}">
+              <option value="${ctg.ctgId}" <c:if test="${param.qurygoodsctgid==ctg.ctgId}">selected</c:if>>${ctg.ctgName}</option>
+            </c:forEach>
+      </select>
+      <span>商品是否有货：</span>
+      <select name="qurygoodsempty">
+         <option value="">==请选择==</option>
+         <option value="不缺" <c:if test="${param.qurygoodsempty=='不缺'}">selected</c:if>>有</option>
+         <option value="缺货" <c:if test="${param.qurygoodsempty=='缺货'}">selected</c:if>>无</option>
+      </select>
+      <input type="submit" value="查找"/>        	       
+   </div>
+   </form>
+   </div>
+    <div id="wrapper">
+	     <div id="title">商品信息列表</div>
+	     <div>
+	        <table id="listtable" cellpadding="0" cellspacing="0">
+	          <tr>
+	            <th>商品编号</th>
+	            <th>商品名称</th>
+	            <th>商品价格</th>
+	            <th>商品所属类型</th>
+	            <th>商品是否缺</th>
+	            <th>商品图片</th>
+	            <th>商品描述 </th>
+	            <th>商品库存数量 </th>
+	            <th>商品所属管理员</th>
+	            <th>操作</th>                                                            
+	          </tr>
+	          <c:forEach var="goods" items="${pagedGoods.pageContent}">
+		          <tr>
+		            <td>${goods.goodsId }</td>
+		            <td>${goods.goodsName}</td>
+		            <td>${goods.goodsPrice}</td>
+		            <td>
+		              <c:forEach var="ctg" items="${ctglist}">
+                        <c:if test="${ctg.ctgId==goods.goodsCtgId}">${ctg.ctgName}</c:if>
+                      </c:forEach>
+                    </td>
+                    <td>      
+                      <c:choose>
+		                <c:when test="${goods.goodsIsEmpty==0}">缺货</c:when>
+		                <c:when test="${goods.goodsIsEmpty==0}">不缺</c:when>
+		        
+		              </c:choose>
+		             </td>
+		            <td>
+		                 <img src="<c:url value="/goodsMgr?act=getimage"/>&goodsid=${goods.goodsId}" width="80px" height="55px"/>
+			        </td>
+			        <td>${goods.goodsDesc}</td>
+			        <td>${goods.goodsQty}</td>
+			        
+			        <td>
+		              <c:choose>
+		                <c:when test="${goods.goodsAdminId==1}">小鱼</c:when>
+		                <c:when test="${goods.goodsAdminId==2}">小游</c:when>
+		                 <c:when test="${goods.goodsAdminId==3}">皇冠</c:when>
+		                <c:when test="${goods.goodsAdminId==4}">赛顺</c:when>
+		                <c:when test="${goods.goodsAdminId==5}">奇伟</c:when>
+		              </c:choose>
+		            </td>
+		            <td>
+		               <button onclick="javascript:forUqdate(${goods.goodsId});"> 修 改 </button>
+		               <button onclick="javascript:removeGoods(${goods.goodsId},'${goods.goodsName}');"> 删 除 </button>
+		            </td>                                                            
+		          </tr>          
+	          </c:forEach>
+	        </table>
+	     </div>
+         <div id="pageinfo">
+	            共${pagedGoods.totalRecNum}条, 当前显示${pagedGoods.startIndex}-${pagedGoods.endIndex}条, 第${pagedGoods.pageNo}/${pagedGoods.totalPageNum}页
+	           |
+	           <c:if test="${pagedGoods.pageNo>1}">
+	             <span class="linkspan" onclick="doQuery(1)">首页</span>&nbsp;
+	           </c:if>
+	           <c:if test="${pagedGoods.prePage}">
+	             <span class="linkspan" onclick="doQuery(${pagedGoods.pageNo-1})">上一页</span>&nbsp;
+	           </c:if>
+	           <c:if test="${pagedGoods.nextPage}">
+	             <span class="linkspan" onclick="doQuery(${pagedGoods.pageNo+1})">下一页</span>&nbsp;
+	           </c:if>
+	           <c:if test="${pagedGoods.pageNo!=pagedGoods.totalPageNum}">
+	             <span class="linkspan" onclick="doQuery(${pagedGoods.totalPageNum})">末页</span>&nbsp;
+	           </c:if>
+	           |
+	            到<input type="text" id="pageNo" size=4 style="text-align:right;" onkeypress="onlynumber();"/> 页
+	           <button onclick="doQuery($('pageNo').value);"> 跳 转 </button>		           		           	           	              
+	      </div>	     	     
+     </div>
+  </body>
+</html>

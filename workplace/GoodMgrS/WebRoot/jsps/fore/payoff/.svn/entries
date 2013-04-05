@@ -1,0 +1,54 @@
+8
+
+dir
+1447
+svn://dfrz004.xicp.net/trunk/GoodMgrS/WebRoot/jsps/fore/payoff
+svn://dfrz004.xicp.net
+
+
+
+2012-04-22T07:47:14.347654Z
+131
+lianch
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+end.jsp
+file
+
+
+
+
+2013-02-25T12:23:55.129353Z
+68c01ce4fc04bb12b514c25a7fb763ec
+2012-04-22T07:47:14.347654Z
+131
+lianch
+has-props
+
+input_order.jsp
+file
+
+
+
+
+2013-02-25T12:23:55.139353Z
+a5dadca9726a2757dbc6ce34675cc34c
+2012-04-22T07:47:14.347654Z
+131
+lianch
+has-props
+

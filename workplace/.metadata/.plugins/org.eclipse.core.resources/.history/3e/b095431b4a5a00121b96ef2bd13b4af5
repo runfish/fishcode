@@ -1,0 +1,119 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.utils;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.dfrz.supershop01.exception.DataAccessException;
+
+
+/**
+ * @author Administrator
+ *
+ */
+public class DBUtils {
+	
+	
+private static ThreadLocal<Connection> tl = new ThreadLocal<Connection>();	
+	
+	private static DBUtils me=new DBUtils();
+	
+	private DBUtils() {}
+	
+	public static DBUtils getInstance()
+	{
+		return me;
+	}
+	
+	//一个静态块在该类被加载的时候，自动运行一次，然后将不再运行。
+	static {
+		try {			
+			//查看类路径中是否存在这个驱动入口类
+			Class.forName("org.logicalcobwebs.proxool.ProxoolDriver");			
+		} catch (ClassNotFoundException e) {			
+			e.printStackTrace();
+		}		
+	}
+	
+	/**
+	 * 获取数据库连接
+	 * @return
+	 */
+	public static synchronized Connection getConn()
+	{
+		
+		//先从当前线程上取出连接实例
+		Connection conn = tl.get();	
+		
+		//如果当前线程上没有Connection的实例 
+		if(null == conn){ 				
+			try {
+				//从连接池中取出一个连接实例 
+				conn = DriverManager.getConnection("proxool.supershop01-ds");
+				//把它绑定到当前线程上
+				tl.set(conn); 
+			} catch (SQLException e) {					
+				throw new DataAccessException("获取连接时异常",e);
+			}
+		
+		}
+		
+			
+		return conn;
+		
+	}
+	
+<<<<<<< .mine
+	/**
+	 * 释放数据库资源
+	 * @param conn
+	 * @param pstmt
+	 * @param rset
+	 */
+	public void releaseConn(Connection conn){
+		if(conn!=null)  {
+			tl.remove(); //释放该线程上的连接绑定器
+			try {
+=======
+	public void releaseRes(Connection conn, PreparedStatement pstmt,ResultSet rset)
+	{
+		try 
+		{
+			if(conn!=null)
+>>>>>>> .r35
+				conn.close();
+<<<<<<< .mine
+			} catch (SQLException e) {
+=======
+			if(pstmt!=null)
+				pstmt.close();
+			if(rset!=null)
+				rset.close();
+		} catch (SQLException e) 
+		{
+>>>>>>> .r35
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void ReleaseRes(Connection conn,PreparedStatement pstmt,ResultSet rset)
+	{
+		try{
+		  if(rset!=null) rset.close();
+		  if(pstmt!=null) pstmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+
+}

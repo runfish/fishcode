@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>项目管理</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+  </head>
+
+  <#include "/base/base.html">
+<script type="text/javascript" src="${ph}/resources/jsExt/tree.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/tree2.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/tree3.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/ProjectStore.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/ProjectFrom.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/ProjectFrom_modify.js"></script>
+<script type="text/javascript">
+var delFun = null;
+var modFun = null;
+Ext.onReady(function() {
+	var newPjcTb = new Ext.Toolbar([{text:"新建项目",iconCls:'diqye',handler:function(){
+		addwindow.show();
+		defaultForm(formAdd.form);
+		
+}}]);
+var issearch = false;
+var stbr1 = new Ext.Toolbar(['建设单位',ctrlAny,'-','立项时间',
+new Ext.form.DateField({format:DEFAULTDATEFORMAT,id:"_startd",allowBlank:true,value:'${firstd!"2012-1-1"}'}),
+'至',new Ext.form.DateField({format:DEFAULTDATEFORMAT,id:"_endd",allowBlank:true,value:'${lastd!"2012-1-31"}'}),'-',
+'项目经理',userCombox]);
+var stbr2 = new Ext.Toolbar(['项目名称',new Ext.form.TextField({id:"pseach"}),'-',
+{text:"查询",iconCls:'diqye',
+		handler:function(){
+			issearch = true;
+			pstore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER}});
+		}
+
+}]);
+
+var pstore = new Ext.data.ProjectStore();
+pstore.on("beforeload",function(){
+		if(issearch){
+			pstore.baseParams.DeptId = ctrlAnyHidden.getValue();
+			pstore.baseParams.sdate = formartDate(Ext.getCmp("_startd").getValue());
+			pstore.baseParams.edate = formartDate(Ext.getCmp("_endd").getValue());
+			pstore.baseParams.pseach = Ext.getCmp("pseach").getValue();
+			pstore.baseParams.userid = userCombox.getValue();
+			console.log(pstore.baseParams);
+		}
+	});
+	var projectPanel = new Ext.grid.GridPanel({
+				 region: 'center',
+				 store: pstore,
+				 autoScroll: true,
+				 iconCls: 'grid',
+				 frame: false,
+				 split: true,
+				 colModel: new Ext.grid.ColumnModel([
+													 new Ext.grid.PageRowNumberer(),
+													 { id: 'Prjid', header: '项目标识', sortable: true, dataIndex: 'Prjid', width: 135, hidden: true },
+													 { id: 'PrjCode', header: '项目名称', sortable: true, dataIndex: 'PrjCode' },
+													 { id: 'DptName', header: '建设单位', sortable: true, dataIndex: 'DptName' },
+													 { id: 'Username', header: '项目经理', sortable: true, dataIndex: 'Username' },
+													 { id: 'Creatdate', header: '立项时间', sortable: true, dataIndex: 'Creatdate' },
+													 { id: 'Amount', header: '投资金额(万元)', sortable: true, dataIndex: 'Amount' },
+													 { id: 'xg', header: '修改', sortable: false, dataIndex: 'Prjid',renderer:function(value,meta,record){
+																								var a = "<a href='javascript:",b=">",c="修改</a>";
+																								var code="modFun("+value+",\""+record.get('DptName')+"\",\""+record.get("Username")+"\")'";
+																								return a+code+b+c;
+																					} 
+													 },
+													 { id: 'sc', header: '删除', sortable: false, dataIndex: 'Prjid',renderer:function(value,meta,record){
+																		var a = "<a href='javascript:",b=">",c="删除</a>";
+																		var code="delFun("+value+")'";
+																		return a+code+b+c;
+															} 
+													 }
+													 
+													 ]),
+				 trackMouseOver: true,
+				 tbar: new Ext.Toolbar(['-','<a href="javascript:">你当前所在的位置</a>', '-','<a href="javascript:" class="navlink">项目管理</a>']),
+				 listeners : { 
+	                       'render': function(){ 
+	                           	newPjcTb.render(this.tbar); 
+								stbr1.render(this.tbar);
+								stbr2.render(this.tbar);
+	                        } 
+	              },
+				 bbar: new Ext.PagingToolbar({
+					 pageSize: DEFAULTGRIDLINENUMBER,
+					 store: pstore,
+					 displayInfo: true
+				 })
+	});
+
+	
+
+	var viewport = new Ext.Viewport({
+                layout: 'border',
+                renderTo: "body",
+                items: [projectPanel]
+    });
+	var userStoreflag = true;
+	pstore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+	//初始化信息 load 
+	ctrlAny.setValue('${deptname!""}');
+	ctrlAnyHidden.setValue(${deptid!0});
+	userStore.reload({ params: { did:${deptid!0}} });
+	userStore.on('load',function(){
+		if(userStoreflag){
+				userStoreflag = false;
+				userCombox.setValue(${userid!""});
+		}
+
+	});
+
+	ctrlAnyHander.hander = function(a){
+		userCombox.setValue("");
+		ctrlAnyHidden.setValue(a.DptID);
+		userStore.reload({ params: { did:a.DptID} });
+	}
+
+	addhander.saveOk=function(){
+		pstore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+	}
+	addhander2.saveOk=function(){
+		pstore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+	}
+
+	delFun = function(id){
+		request_post("${ph}/project/del/"+id,null,function(json){
+			if(json.ok){
+				ext_alert("删除成功");
+				pstore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+			}else{
+				ext_alert(json.msg);
+			}
+		});
+	}
+	var user_id = "";
+	var modify = false
+	modFun=function(id,deptName,userName){
+		modify = true;
+		//alert(id+deptName+userName);
+		addwindow2.show();
+		defaultForm(formAdd2.form);
+		request_post("${ph}/project/get/"+id,null,function(json){
+			//console.log(json);
+			userStore3.reload({ params: { did:json.Dptid} });
+			formAdd2.form.setValues(json);
+			ctrlAny3.setValue(deptName);
+			user_id = json.Userid;
+		//	userCombox3.setValue(json.Userid);
+			userStore3.on('load',function(){
+				if(modify){
+					modify=false;
+				//	formAdd2.form.setValues(json);
+				//	ctrlAny3.setValue(deptName);
+					userCombox3.setValue(user_id);
+				}
+			});
+		});
+	}
+});	                        
+</script>
+  <body>
+  <div id="body"></div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+package net.dfrz.action;
+
+public class OgnlAction {
+
+}

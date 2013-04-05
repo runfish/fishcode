@@ -1,0 +1,205 @@
+package net.dfrz.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
+public class OgnlAction extends BaseAction{
+
+	private String name;
+	
+	private int age;
+	
+	private DogBean dog;
+	
+	
+	private List<String> strList = new ArrayList<String>();
+	
+	private List<DogBean> dogList = new ArrayList<DogBean>();
+	
+	private Map<String, Object> Map = new HashMap<String, Object>();
+	
+	
+	
+	
+	
+	
+	/**
+	 * @return the dog
+	 */
+	public DogBean getDog() {
+		return dog;
+	}
+
+
+
+
+	/**
+	 * @param dog the dog to set
+	 */
+	public void setDog(DogBean dog) {
+		this.dog = dog;
+	}
+
+
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+	/**
+	 * @return the age
+	 */
+	public int getAge() {
+		return age;
+	}
+
+
+
+
+	/**
+	 * @param age the age to set
+	 */
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+
+	public void add(){
+		System.out.println("add ·½·¨");
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		this.age=22;
+		this.name="xiaoyu";
+		this.dog = new DogBean("xiaogou",12);
+		
+		strList.add("aa");
+		strList.add("bb");
+		strList.add("cc");
+		strList.add("dd");
+		strList.add("ee");
+
+		
+		for (int i = 0; i < 5; i++) {
+			DogBean dogBean = new DogBean();
+
+			dogBean.setName("dog"+i);
+			dogList.add(dogBean);
+		}
+		
+		Map.put("key_1", "value_1");
+		Map.put("key_2", new DogBean("xiaogu",156));
+		Map.put("3", new DogBean("xiao",45));
+		Map.put("4", "xiaoyu");
+		Map.put("5", this.strList);
+		Map.put("6",this.dogList);
+		
+		
+		Iterator<String> i = strList.iterator();
+		i.hasNext();
+		
+		return this.SUCCESS;
+		
+		
+	}
+	
+	public String requestAction() throws Exception{
+		return this.SUCCESS;
+	}
+
+
+
+
+	/**
+	 * @return the strList
+	 */
+	public List<String> getStrList() {
+		return strList;
+	}
+
+
+
+
+	/**
+	 * @param strList the strList to set
+	 */
+	public void setStrList(List<String> strList) {
+		this.strList = strList;
+	}
+
+
+
+
+	/**
+	 * @return the dogList
+	 */
+	public List<DogBean> getDogList() {
+		return dogList;
+	}
+
+
+
+
+
+	/**
+	 * @param dogList the dogList to set
+	 */
+	public void setDogList(List<DogBean> dogList) {
+		this.dogList = dogList;
+	}
+
+
+
+
+	/**
+	 * @return the map
+	 */
+	public Map<String, Object> getMap() {
+		return Map;
+	}
+
+
+
+
+	/**
+	 * @param map the map to set
+	 */
+	public void setMap(Map<String, Object> map) {
+		Map = map;
+	}
+
+
+
+
+
+}

@@ -1,0 +1,69 @@
+8
+
+dir
+303
+https://supershop01-01.googlecode.com/svn/trunk/supershop01-01/WebRoot
+https://supershop01-01.googlecode.com/svn
+
+
+
+2013-03-02T03:51:14.756819Z
+302
+594937650@qq.com
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+77594a76-5b2b-1a52-1120-fdc55be98e2d
+
+jsps
+dir
+
+META-INF
+dir
+
+index.jsp
+file
+
+
+
+
+2013-03-02T05:38:04.506175Z
+32bf9637c6f482481cfb811de373d375
+2013-03-02T03:51:14.756819Z
+302
+594937650@qq.com
+has-props
+
+index1.jsp
+file
+
+
+
+
+2013-03-02T05:38:04.526176Z
+d84b48bcf72abefb24e856e3afe96fd8
+2013-03-01T12:49:17.117624Z
+291
+pingdongyu@gmail.com
+has-props
+
+WEB-INF
+dir
+
+css
+dir
+
+js
+dir
+

@@ -1,0 +1,42 @@
+<#macro table layouth="135" width="500" tid="">
+<table class="table" id="${tid!}" width="${width}px"
+	layouth="${layouth!}">
+	<thead>
+		<tr>
+			<th width="50px">序号</th> <#list collist as t>
+			<th>${t!}</th> </#list>
+		</tr>
+	</thead>
+	<tbody>
+		<#list list as d>
+		<tr target="sid_key" rel="${d.id!}">
+			<td>${d_index+1}</td> <#list collist as t>
+			<td>${d.get(t)!}</td> </#list>
+		</tr>
+		</#list>
+	</tbody>
+</table>
+</#macro> <#macro searchBar>
+<div class="subBar">
+	<ul>
+		<li>
+			<div class="buttonActive">
+				<div class="buttonContent">
+					<button type="submit">查询</button>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="buttonActive">
+				<div class="buttonContent">
+					<button type="reset">重置</button>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+</#macro>
+<#macro Layout >
+  <#nested> 
+  <@pagination/> 
+ </#macro>

@@ -1,0 +1,21 @@
+/**
+ * 
+ */
+package beStrong.oneDay;
+
+/**
+ * @author Administrator
+ *
+ */
+public class IntorSpectorTest {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		RefectPoint rp1 = new RefectPoint(3,5);
+
+	}
+
+}

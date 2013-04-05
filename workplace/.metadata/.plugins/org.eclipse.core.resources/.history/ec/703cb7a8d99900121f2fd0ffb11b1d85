@@ -1,0 +1,47 @@
+package net.dfrz.io.thread;
+
+class demo extends Thread {
+
+	private String name;
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Thread#run()
+	 */
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		show();
+	}
+
+	public demo(String name) {
+		super();
+		this.name = name;
+	}
+
+	public void show() {
+		for (int i = 0; i < 10; i++) {
+			for (int j = -999; j < 999999; j++) {
+			}
+			System.out.println(this.name + i+Thread.currentThread());
+		}
+	}
+
+}
+
+public class ThreadDemo {
+
+	public static void main(String[] args) {
+
+		demo d1 = new demo("xiaoyu");
+		demo d2 = new demo("ะกำใ");
+		//d1.start();
+		//d2.start();
+		d1.run();
+		d2.run();
+		System.out.println("over");
+
+	}
+
+}

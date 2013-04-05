@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;beStrong.oneDay.WeekDay&apos; to &apos;WeekDay1&apos;&#x0D;&#x0A;- Original project: &apos;BeStrong&apos;&#x0D;&#x0A;- Original element: &apos;beStrong.oneDay.WeekDay&apos;&#x0D;&#x0A;- Renamed element: &apos;beStrong.oneDay.WeekDay1&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Rename similarly named elements&#x0D;&#x0A;- Update fully qualified names in &apos;*&apos; files&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;WeekDay&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;beStrong.oneDay{WeekDay.java[WeekDay" matchStrategy="1" name="WeekDay1" patterns="*" qualified="true" references="true" similarDeclarations="true" stamp="1359114318083" textual="true" version="1.0"/>
+</session>

@@ -1,0 +1,35 @@
+package net.dfrz.action;
+
+import java.util.Date;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class OgnlAction extends ActionSupport {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
+	@Override
+	public String execute() throws Exception {
+
+		ActionContext actionContext = ActionContext.getContext();
+
+		Map<String, Object> applicationMap = (Map<String, Object>) actionContext
+				.getApplication();
+		Map<String, Object> sessionMap = (Map<String, Object>) actionContext
+				.getSession();
+		Map<String, Object> requestMap = (Map<String, Object>) actionContext
+				.get("request");
+
+		applicationMap.put("app_key", "xiaoyu");
+		sessionMap.put("sess_key", "xiaoyuer");
+		requestMap.put("req_key", new Date());
+
+		return this.SUCCESS;
+	}
+
+}

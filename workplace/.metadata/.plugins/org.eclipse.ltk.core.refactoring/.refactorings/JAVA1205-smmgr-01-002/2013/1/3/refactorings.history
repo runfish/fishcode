@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 elements(s) to &apos;css&apos;&#x0D;&#x0A;- Original project: &apos;JAVA1205-smmgr-01-002&apos;&#x0D;&#x0A;- Destination element: &apos;css&apos;&#x0D;&#x0A;- Original element: &apos;application.css&apos;" description="Copy file" element1="WebRoot/CSS/application.css" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" log="WebRoot/CSS/application.css&#x09;true&#x09;false" policy="org.eclipse.jdt.ui.copyResources" stamp="1358146888189" target="/supershop01-02/WebRoot/css" units="0" version="1.0"/>
+</session>

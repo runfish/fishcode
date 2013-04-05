@@ -1,0 +1,24 @@
+package net.dfrz.demo.filter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class FilterChain implements Filter {
+	
+	List<Filter> filters = new ArrayList<Filter>();
+	
+	
+	public FilterChain addFilter(Filter f){
+		this.filters.add(f);
+	    return this;
+	}
+	@Override
+	public void doFilter(Request request, Response response,FilterChain chain) {
+		for(Filter f : filters){
+			 f.doFilter(request,response, chain);
+		}
+
+	}
+	
+
+}

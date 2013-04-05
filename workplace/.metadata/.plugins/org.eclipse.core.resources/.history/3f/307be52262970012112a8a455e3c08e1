@@ -1,0 +1,46 @@
+/**
+ * 服务器端 
+ */
+package com.qq.server.connect;
+
+import java.net.*;
+import java.io.*;
+
+import com.qq.server.common.Message;
+import com.qq.server.common.User;
+
+
+
+public class ServerConToClient {
+	
+	private ServerSocket ss = null;
+	private Socket s = null;
+	private ObjectInputStream ois = null;
+	private ObjectOutputStream oos = null;
+	
+	public static void main(String[] args)
+	{
+		ServerConToClient sctc = new ServerConToClient();
+	}
+	public ServerConToClient()
+	{
+		try {
+			System.out.println("服务器已启动");
+			ss = new ServerSocket(9111);
+			s = ss.accept();
+			System.out.println("服务器已连接");
+			ois = new ObjectInputStream(s.getInputStream());
+			oos = new ObjectOutputStream(s.getOutputStream());
+			
+			Message msg = (Message)ois.readObject();
+			System.out.println("服务器接收到的消息： " + msg.getMsgType() + " id:" + ((User)(msg.getMsg())).getUserId() + " password:" + ((User)(msg.getMsg())).getUserPassword());
+			msg.setMsgType("return");
+			oos.writeObject((Object)msg);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

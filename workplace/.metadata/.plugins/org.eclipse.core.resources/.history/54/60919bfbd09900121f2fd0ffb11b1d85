@@ -1,0 +1,32 @@
+package net.dfrz.io.thread;
+
+class demo {
+
+	private String name;
+
+	public demo(String name) {
+		super();
+		this.name = name;
+	}
+
+	public void show() {
+		for (int i = 0; i < 10; i++) {
+			for(int j=-999999;j<9999999;j++){}
+			System.out.println(this.name + i);
+		}
+	}
+
+}
+
+public class ThreadDemo {
+
+	public static void main(String[] args) {
+		
+		demo d1 = new demo("xiaoyu");
+		demo d2 = new demo("ะกำใ");
+		d1.show();
+		d2.show();
+
+	}
+
+}

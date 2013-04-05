@@ -1,0 +1,75 @@
+8
+
+dir
+303
+https://supershop01-01.googlecode.com/svn/supershop01-01
+https://supershop01-01.googlecode.com/svn
+
+
+
+2013-01-19T06:35:43.887918Z
+107
+549164459@qq.com
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+77594a76-5b2b-1a52-1120-fdc55be98e2d
+
+.classpath
+file
+
+
+
+
+2013-03-02T05:38:31.705216Z
+93646ee9c301b6a221b19fc978b46d6c
+2013-01-08T10:59:32.837249Z
+3
+594937650@qq.com
+has-props
+
+WebRoot
+dir
+
+.mymetadata
+file
+
+
+
+
+2013-03-02T05:38:31.715216Z
+8d360ce50012ad5383aabc77f0763feb
+2013-01-08T10:59:32.837249Z
+3
+594937650@qq.com
+
+.project
+file
+
+
+
+
+2013-03-02T05:38:31.725216Z
+1119b8a5d7d691327868f37d3af666d4
+2013-01-08T10:59:32.837249Z
+3
+594937650@qq.com
+has-props
+
+src
+dir
+
+docs
+dir
+

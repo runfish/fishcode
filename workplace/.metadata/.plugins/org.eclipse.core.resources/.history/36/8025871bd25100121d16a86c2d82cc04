@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>test2.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+   <script type="text/javascript">
+   
+	   function max(){
+	    var  m= Number.NEGATIVE_INFINITY;
+	    for(var i = 0;i< arguments.length;i++){
+	    
+	      if(arguments[i]>m)
+	         m= arguments[i];
+	     }
+	        return m;
+	   }
+	   
+	   var largest=max(1,10,23,4545,67673,23234,45,77654,3434);
+	   document.write("最大值是："+largest+"<br>");
+	   
+	   function f(x){
+	      document.write("x:"+x+"<br>");
+	      arguments[0]="new";
+	      document.write("x:"+x+"<br>");
+	   }
+	   f("Old");
+	   //求阶层函数
+	   
+	   function factorial(x){
+	   if(x<=1)return 1;
+	   return x*factorial(x-1);//调用函数本身arguments.callee(x-1)
+	   
+	   
+	   }
+	    document.write("10!="+factorial(10)+"<br>");
+	    
+	    var Obj1 =new Object();
+	    var Obj2 =new Object();
+	    
+	    Obj1.i="这是Object的属性";
+	    Obj2.i="这是Obj2的属性";
+	    Obj1.checki =function(){
+	    document.write(this.i+"<br>");
+	    }
+	    Obj1.checki();
+	    Obj1.checki.apply(Obj2);
+	    Obj1.checki.call(Obj2);
+	    
+	    function Rectangle(w,h){
+	        this.width = w;
+	        this.height = h;
+	        this.area=compute_area;
+	    }
+	    
+	    function compute_area(){
+	       
+	       return this.width * this.height ;
+	    }
+	    var page = new Rectangle(2,3);
+	   // page.area=compute_area;
+	    var a =page.area();
+	    document.write("page.area ="+page.area()+"<br>");
+	    
+	    function Circle(x,y,r){
+	    
+	       this.x = x;
+	       this.y = y;
+	       this.r = r;
+	    
+	    
+	    }
+	    
+	    var wheel = new Circle(1,1,4);
+	    Circle.prototype.pi=3.1415926;
+	    function Cricle_cricumference(){ return 2*this.pi*this.r}
+	    Cricle.prototype.cricumference=Cricle_cricumference;
+	    var C1 = wheel.cricumference();
+	    document.write("C1:"+C1+"<br>");
+	    ddocument.write("面积"+);
+   
+   </script>
+  </body>
+</html>

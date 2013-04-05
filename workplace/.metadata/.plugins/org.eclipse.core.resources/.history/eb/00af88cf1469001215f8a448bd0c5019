@@ -1,0 +1,162 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+   
+    <title></title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<link rel="stylesheet" type="text/css" href="<c:url value="/css/application.css"></c:url>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/css/form.css"></c:url>">
+    <script type="text/javascript" src="<c:url value="/js/prototype.js"/>"></script>
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    
+    <style>
+      .error{
+        border:1px solid yellow;
+        color:red;
+        width:230px;
+        padding:8px;
+        margin:5px;
+      }  
+    </style>
+    	<style>
+	   
+	   .rightCC{
+	     font-size:12px;
+	     color:green;
+	   }
+	   
+	   .errCC{
+	     font-size:12px;
+	     color:red;
+	   }
+	   
+	</style>
+	
+	<script type="text/javascript">
+	
+    function reloadVerifyCode(){  
+  
+           var timenow = new Date().getTime();                          
+  
+           document.getElementById("checkcode").src="<%=request.getContextPath()%>/checkcode?act=generate&d="+timenow;  
+  
+    }  
+    
+    function checkCode(){
+        //http://localhost:8080/code/genCC?act=checkCode&cc=3h3t
+        new Ajax.Request(
+            encodeURI("checkcode?act=checkCode&seed="+Math.random()+"&cc="+$('cc').value),
+            {
+              method:'get',
+              onComplete:function(xhr){
+                 var result=xhr.responseText;
+                 //alert(result);
+                 if(result=='ok'){
+                   $('checkResult').innerText='验证码正确!';
+                   $('checkResult').className='rightCC';
+                   alert(result);
+                   return result;
+                 }
+                 else
+                 {
+                   $('checkResult').innerText='验证码错误!';
+                   $('checkResult').className='errCC'; 
+                   alert(result);
+                   return result;                
+                 }
+              }
+            }
+        );
+        
+    }
+    
+    function judgeResult(){
+    
+        var result = checkCode();
+        //alert(result);
+    
+    }
+	
+	
+	</script>
+    
+    
+ 
+    
+    <script type="text/javascript">
+       
+      
+       function validateEntry(loginFrm){
+         
+           with(loginFrm){
+             
+              if(username.value==""){
+                 alert("用户帐号必须填写!");
+                 userno.select();
+                 return false;
+              }
+              
+              if(userpwd.value==""){
+                alert("登陆密码必须填写!");
+                userpwd.select();
+                return false;
+              }
+              
+              if(ccode.value==""){
+                alert("验证码不能为空");
+                ccode.select();
+                return false;
+              }
+               
+           }
+
+           return true; 
+       }
+    
+    </script>
+    
+  </head>
+  
+  <body>
+    <div id="wrapper">
+	    <div id="f_title">您好，欢迎来到电子商城后台管理：管理员登录</div>
+	    <form action="<c:url value="/action/securityMgr?act=login"/>" method="post" onSubmit="return (validateEntry(this)&&checkCode);">
+	        <div class="f_row">
+	          <span>用户帐号:</span>
+	          <input type="text" name="username" value="${param.userno==null?'hhg0012':param.username}"/>
+	        </div>
+	        <div class="f_row">
+	          <span>登录密码:</span>
+	          <input type="password" name="userpwd" value="123456"/>        
+	        </div>
+	         <div class="f_row">
+	          <span>输入验证码:</span>
+	          <input type="text"  name="ccode" id="cc" size="10"/>
+	          <image id="checkcode" src="<c:url value="checkcode?act=generate"/>&randomNum=${randomNum}" />
+              <a href="javascript:reloadVerifyCode();">换一张</a>
+              <span id="checkResult"></span>
+	        </div>
+	         <c:if test="${not empty error}">
+		        <div class="error">
+		            ${error}
+		        </div>
+	        </c:if>
+	        <div class="f_row">
+	          <input type="submit"  value=" 登 录 " onclick="judgeResult();"/>   
+	        </div>                        
+	        
+              
+               
+	    </form>
+    </div>
+    <%@ include file="/jsps/common/footer.jsp"%>
+  </body>
+</html>

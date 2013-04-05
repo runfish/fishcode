@@ -1,0 +1,22 @@
+/**
+ * 
+ */
+package beStrong.twoDay;
+
+/**
+ * @author Administrator
+ *
+ */
+public class AnnotationTest {
+
+	/**
+	 * @param args
+	 */
+	@SuppressWarnings("deprecate")
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.runFinalizersOnExit(true);//deprecate ¹ýÊ±
+
+	}
+
+}

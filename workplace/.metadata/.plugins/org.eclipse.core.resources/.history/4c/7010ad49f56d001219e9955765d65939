@@ -1,0 +1,176 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.dfrz.supershop01.dao.CategoryDao;
+import net.dfrz.supershop01.dao.GoodsDao;
+import net.dfrz.supershop01.dao.SmallCategoryDao;
+import net.dfrz.supershop01.domain.Category;
+import net.dfrz.supershop01.domain.SmallCategory;
+import net.dfrz.supershop01.utils.DBUtils;
+
+
+
+/**
+ * @author Administrator
+ *
+ */
+public class SmallCategoryDaoJDBCImpl implements SmallCategoryDao {
+	 private final static String ADD="insert into small_category values(?,?,?,?)";
+     private final static String LOAD_ALL="select * from small_category";
+     private final static String UPDATE="update small_category set "+
+                                        "s_ctg_name=?"+
+                                        ",s_ctg_status=?"+
+                                        ",b_ctg_id=?"+
+                                        "where s_ctg_id=?";
+     private final static String DELETE="delete from small_category where s_ctg_id=?";
+     private final static String GET_ONE="select * from small_category where s_ctg_id=?";
+	/* (non-Javadoc)
+	 * @see net.gdm.dao.SmallCategoryDao#ListOraderItem()
+	 */
+	public List<SmallCategory> ListOraderItem() {
+		// TODO Auto-generated method stub
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+		ResultSet rest=null;
+		List<SmallCategory> smallcategorylist=null;
+		
+		try {
+			pstmt=conn.prepareStatement(LOAD_ALL);
+			rest=pstmt.executeQuery();
+			CategoryDao bigcatdao=new CategoryDaoJDBCImpl();
+			smallcategorylist = new ArrayList<SmallCategory>();
+			SmallCategory samllcategory = null;
+			while(rest.next())
+			{
+			    samllcategory = new SmallCategory();
+				samllcategory.setSmallCtgId(rest.getInt("s_ctg_id"));
+				samllcategory.setSmallCtgName(rest.getString("s_ctg_name"));
+				samllcategory.setSmallCtgStatus(rest.getString("s_ctg_status"));
+				int big_ctg_id = rest.getInt("b_ctg_id");
+				Category bCategory = bigcatdao.getCtgById(big_ctg_id);
+				samllcategory.setBigCategory(bigcatdao.getCtgById(rest.getInt("b_ctg_id")));
+				
+				smallcategorylist.add(samllcategory);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return smallcategorylist;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.gdm.dao.SmallCategoryDao#addSmallCategory(net.gdm.demo.SmallCategory)
+	 */
+	public void addSmallCategory(SmallCategory smallcategory) {
+		// TODO Auto-generated method stub
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+
+		try {
+			
+			pstmt=conn.prepareStatement(ADD);
+			pstmt.setInt(1, smallcategory.getSmallCtgId());
+			pstmt.setString(2, smallcategory.getSmallCtgName());
+			pstmt.setString(3, smallcategory.getSmallCtgStatus());
+			pstmt.setInt(4, smallcategory.getBigCategory().getCtgId());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see net.gdm.dao.SmallCategoryDao#deleteSmallCategory(int)
+	 */
+	public void deleteSmallCategory(int id) {
+		// TODO Auto-generated method stub
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=conn.prepareStatement(DELETE);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see net.gdm.dao.SmallCategoryDao#getOne(int)
+	 */
+	public SmallCategory getOne(int id) {
+		// TODO Auto-generated method stub
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+		ResultSet rest=null;
+		SmallCategory smallCategory=null;
+		CategoryDao bigcatdao=new CategoryDaoJDBCImpl();
+		//GoodsDao goodsdao=new GoodsDaoJDBCImpl();
+		try {
+			pstmt=conn.prepareStatement(GET_ONE);
+			pstmt.setInt(1, id);
+			rest=pstmt.executeQuery();
+			
+			while(rest.next())
+			{
+<<<<<<< .mine
+				smallcategory.setSmallCtgId(rest.getInt("s_ctg_id"));
+				smallcategory.setSmallCtgName(rest.getString("s_ctg_name"));
+				smallcategory.setSmallCtgStatus(rest.getString("s_ctg_status"));
+				smallcategory.setBigCategory(bigcatdao.getCtgById(rest.getInt("b_ctg_id")));
+				//smallcategory.setGoodsList(goodsdao.ListGoods(rest.getInt("s_ctg_id")));
+=======
+				smallCategory=new SmallCategory();
+				smallCategory.setSmallCtgId(rest.getInt("s_ctg_id"));
+				smallCategory.setSmallCtgName(rest.getString("s_ctg_name"));
+				smallCategory.setSmallCtgStatus(rest.getString("s_ctg_status"));
+				smallCategory.setBigCategory(bigcatdao.getCtgById(rest.getInt("b_ctg_id")));
+				smallCategory.setGoodsList(goodsdao.ListGoods(rest.getInt("s_ctg_id")));
+>>>>>>> .r175
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return smallCategory;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.gdm.dao.SmallCategoryDao#updateSmallCategory(net.gdm.demo.SmallCategory)
+	 */
+	public void updateSmallCategory(SmallCategory smallcategory) {
+		// TODO Auto-generated method stub
+		Connection conn=DBUtils.getInstance().getConn();
+		PreparedStatement pstmt=null;
+
+		try {
+			
+			pstmt=conn.prepareStatement(UPDATE);
+			pstmt.setString(1, smallcategory.getSmallCtgName());
+			pstmt.setString(2, smallcategory.getSmallCtgStatus());
+			pstmt.setInt(3, smallcategory.getBigCategory().getCtgId());
+			pstmt.setInt(4, smallcategory.getSmallCtgId());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

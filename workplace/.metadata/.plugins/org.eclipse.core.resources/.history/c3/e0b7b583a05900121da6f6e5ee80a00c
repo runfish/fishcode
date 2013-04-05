@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.servicesimpl;
+
+import net.dfrz.supershop01.domain.Goods;
+import net.dfrz.supershop01.services.GoodsService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class GoodsServiceImpl implements GoodsService {
+
+	@Override
+	public void addGoods(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteGoods(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Goods getGoodsById(int goodsId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateGoods(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

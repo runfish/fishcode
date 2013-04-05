@@ -1,0 +1,4 @@
+#Wed Apr 03 21:59:52 CST 2013
+eclipse.preferences.version=1
+com.aptana.ide.editor.js.DISABLED_ENVIRONMENTS=Jaxer Framework,Ext 2.2,YUI 2.7,Dojo 1.2
+com.aptana.ide.editor.js.LOADED_ENVIRONMENTS=DOM 5,DOM 3,DOM 1 & 2,DOM 0,jQuery 1.3

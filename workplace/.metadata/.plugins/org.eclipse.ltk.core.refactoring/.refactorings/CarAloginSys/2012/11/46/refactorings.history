@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;net.dfrz.caraloginsys.DBUtils&apos; to &apos;net.dfrz.caraloginsys.utils&apos;&#x0D;&#x0A;- Original project: &apos;CarAloginSys&apos;&#x0D;&#x0A;- Original element: &apos;CarAloginSys/src/net.dfrz.caraloginsys.DBUtils&apos;&#x0D;&#x0A;- Renamed element: &apos;CarAloginSys/src/net.dfrz.caraloginsys.utils&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings&#x0D;&#x0A;- Rename subpackages of the package" description="Rename package &apos;net.dfrz.caraloginsys.DBUtils&apos;" flags="589830" hierarchical="true" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;net.dfrz.caraloginsys.DBUtils" name="net.dfrz.caraloginsys.utils" qualified="false" references="true" stamp="1353069904302" textual="false" version="1.0"/>
+</session>

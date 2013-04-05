@@ -1,0 +1,58 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.daoimpl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import net.dfrz.supershop01.dao.GoodsDao;
+import net.dfrz.supershop01.domain.Goods;
+import net.dfrz.supershop01.utils.DButils;
+
+/**
+ * @author YDP1205
+ *
+ */
+public class GoodsDaoJDBCImpl implements GoodsDao {
+
+	private final static String ADD_GOODS = "insert into goods values(seq_goods.nextval,?,?,?,?,?,?,?,Empty_BLOB()";
+	@Override
+	public void add(Goods goods) {
+		// TODO Auto-generated method stub
+		Connection conn = DButils.getInstance().getConn();
+		PreparedStatement pstmt = null;
+		ResultSet rSet = null;
+		try {
+			conn.setAutoCommit(false);
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+	}
+
+	@Override
+	public void delete(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Goods getGoodsById(int goodsId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(Goods goods) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,54 @@
+package net.dfrz.io.thread;
+
+import sun.java2d.SunGraphicsEnvironment.T1Filter;
+
+public class Bank {
+
+	public static void main(String[] args) {
+		Cus cus = new Cus();
+		Thread t1 = new Thread(cus);
+		Thread t2 = new Thread(cus);
+		t1.start();
+		t2.start();
+	}
+}
+
+class Cus implements Runnable{
+	BankDemo bank = new BankDemo();
+	@Override
+
+	public synchronized void run() {
+		// TODO Auto-generated method stub
+	
+		for(int i=0;i<5;i++){
+			bank.add(100);
+		}
+		
+	}
+	
+	
+	
+}
+
+
+class BankDemo{
+
+	
+
+	private int sum;
+//	private int num = 100;
+	
+	public  void add(int num){
+		sum =sum + num;
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(sum);
+	}
+	
+	
+	
+}

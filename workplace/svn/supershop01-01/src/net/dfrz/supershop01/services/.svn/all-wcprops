@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/services
+END
+CustomerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/services/CustomerService.java
+END
+TrolleyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/services/TrolleyService.java
+END
+GoodsService.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/services/GoodsService.java
+END
+OrderService.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/107/supershop01-01/src/net/dfrz/supershop01/services/OrderService.java
+END

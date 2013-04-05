@@ -1,0 +1,150 @@
+package net.dfrz.io.thread;
+
+public class ThreadConnection {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// 创建资源
+		Resource r = new Resource();
+		// 创建线程任务
+		Input input = new Input(r);
+		Output output = new Output(r);
+
+		Thread t1 = new Thread(input);
+		Thread t2 = new Thread(output);
+
+		t1.start();
+		t2.start();
+
+	}
+
+}
+
+class Resource {
+
+	private String name;
+
+	private String sex;
+
+	private boolean flag = false;
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @return the sex
+	 */
+	public String getSex() {
+		return sex;
+	}
+
+	/**
+	 * @param sex the sex to set
+	 */
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	/**
+	 * @return the flag
+	 */
+	public boolean getFlag() {
+		return flag;
+	}
+
+	/**
+	 * @param flag the flag to set
+	 */
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+}
+
+class Input implements Runnable {
+
+	private Resource r;
+
+	public Input(Resource r) {
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		int x = 0;
+		while (true) {
+			synchronized (r) {
+				if (r)
+					try {
+
+						r.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				if (x == 0) {
+					r.name = "xiaoyu";
+					r.sex = "man";
+					x = 1;
+
+				} else {
+					r.name = "lh";
+					r.sex = "girl";
+					x = 0;
+
+				}
+				r.flag = true;
+				r.notify();
+			}
+			// x = (x + 1) % 2;
+		}
+
+	}
+}
+
+class Output implements Runnable {
+	private Resource r;
+
+	public Output(Resource r) {
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while (true) {
+			synchronized (r) {
+				if (!r.flag)
+					try {
+
+						r.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				System.out.println(r.name + "\t" + r.sex);
+				r.flag = false;
+				r.notify();
+
+			}
+		}
+
+	}
+
+}

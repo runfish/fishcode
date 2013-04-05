@@ -1,0 +1,26 @@
+/**
+ * 
+ */
+package net.dfrz.hotel.utils;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * @author ctd
+ *
+ */
+public class PathUtils {
+	
+	public static String BASE_PATH=null;
+	
+	public static String getPath(HttpServletRequest request, String path){
+	
+	   if(BASE_PATH==null)
+		    BASE_PATH="http://"+"219.229.129.55"+":"
+		                       +request.getServerPort()
+		                       +request.getContextPath()
+		                       +"/";
+	   return BASE_PATH+path;
+	}
+
+}

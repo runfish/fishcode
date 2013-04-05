@@ -1,0 +1,33 @@
+package net.dfrz.smmgr01.dao;
+
+import java.util.List;
+import net.dfrz.smmgr01.domain.Category;
+
+public class CategoryDaoJDBCImpl implements CategoryDao {
+
+	public void add(Category ctg) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void delete(Category ctg) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void getGoodsById(int ctgId) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public List loadAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void update(Category ctg) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

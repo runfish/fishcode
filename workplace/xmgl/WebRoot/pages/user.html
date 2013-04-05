@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>navigation.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+  </head>
+
+  <#include "/base/base.html">
+<script type="text/javascript" src="${ph}/resources/jsExt/tree.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/tree2.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/tree3.js"></script>
+<script type="text/javascript" src="${ph}/resources/jsExt/user_modify.js"></script>
+<script type="text/javascript">
+var qzfun = null;
+var delFun = null;
+var modFun = null;
+var userStore = null;
+Ext.onReady(function() {
+
+var tbar1 = new Ext.Toolbar({
+					region : 'north',
+					items : ['-', 
+					'<a href="javascript:void();">你当前所在的位置</a>', '-',
+							'<a href="javascript:" class="navlink">用户管理</a>']
+	});
+	var tbar4= new Ext.Toolbar([
+		'-',
+		{text:'新建',iconCls:'diqye',
+		handler:function(){
+			addwindow.show();
+			}
+			},
+		'-','单位',ctrlAny,'-',new Ext.form.Checkbox({id:"under"}),
+		'包含下级','-','用户名',
+		new Ext.form.TextField({
+			id:"unseach"
+		}),
+		'-',
+		{text:'查询',iconCls:'diqye',
+		handler:function(){
+			userStore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+		}
+		}
+	]);	
+	  userStore = new Ext.data.Store({
+	                proxy: new Ext.data.HttpProxy({ url: '${ph}/user/grid' }),
+	                reader: new Ext.data.JsonReader({
+	                    totalProperty: 'results', root: 'rows', id: 'Userid',
+	                    fields: ['Userid', 'LogonName','Username', 'DptName', 'Sex', 'Birthday', 'Bphone','Headship', 'note']
+	                }),
+	                sortInfo: { field: 'Userid', direction: 'DESC' },
+	                remoteSort: false
+	            });
+	userStore.on("beforeload",function(){
+		userStore.baseParams.DeptId = ctrlAnyHidden.getValue();
+		userStore.baseParams.under = Ext.getCmp("under").getValue();
+		userStore.baseParams.unseach = Ext.getCmp("unseach").getValue();
+	});
+	 var userInfoGrid = new Ext.grid.GridPanel({
+	                id: 'userInfoGrid',
+	                region: 'center',
+	                store: userStore,
+	                autoScroll: true,
+	               // iconCls: 'grid',
+	                frame: false,
+	                split: true,
+	                colModel: new Ext.grid.ColumnModel([
+	                            new Ext.grid.PageRowNumberer(),
+	                            { id: 'Userid', header: '用户标识', sortable: true, dataIndex: 'Userid', width: 135, hidden: true },
+	                            { id: 'LogonName', header: '用户登录名', sortable: true, dataIndex: 'LogonName' },
+	                            { id: 'Username', header: '用户名称', sortable: true, dataIndex: 'Username' },
+	                            { id: 'DptName', header: '单位名称', sortable: true, dataIndex: 'DptName' },
+	                            { id: 'Sex', header: '性别', sortable: true, dataIndex: 'Sex',renderer:function(value){
+									return C_SEX[value];
+								} },
+	                            { id: 'modify', header: '修改', sortable: false, dataIndex: 'Userid',renderer:function(value,meta,record){
+									var a = "<a href='javascript:",b=">",c="修改</a>";
+								    var code="modFun("+record.get('Userid')+",\""+record.get('DptName')+"\")'";
+	                            	return a+code+b+c;
+	                            } },
+	                            { id: 'del', header: '删除', sortable: false, dataIndex: 'Userid',renderer:function(value,meta,record){
+	                            	var a = "<a href='javascript:",b=">",c="删除</a>";
+								    var code="delFun("+record.get('Userid')+")'";
+	                            	return a+code+b+c;
+	                            } }
+	                            ]),
+	                trackMouseOver: true,
+	                
+	                tbar: tbar1,
+	                listeners : { 
+	                       'render': function(){ 
+	                           	tbar4.render(this.tbar); 
+	                        } 
+	                     }, 
+	                bbar: new Ext.PagingToolbar({
+	                    pageSize: DEFAULTGRIDLINENUMBER,
+	                    store: userStore,
+	                    displayInfo: true
+	                })
+	            });
+	            
+	            var viewport = new Ext.Viewport({
+                layout: 'border',
+                renderTo: Ext.getBody(),
+                items: [userInfoGrid]
+            	});
+
+				userStore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+
+delFun = function(id){
+	request_post("${ph}/user/del/"+id,null,function(json){
+			if(json.ok){
+				ext_alert("删除成功");
+				userStore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+			}else{
+				ext_alert(json.msg);
+			}
+		});
+}
+
+modFun = function(id,dept){
+	modifywindow.show();
+	formModify.form.doAction('load',{url:'${ph}/user/doAction/'+id});
+	ctrlAny3.setValue(dept);
+}
+	//新增页面
+	var formAdd = new Ext.form.FormPanel({
+			frame : false,
+			width:700,
+			border : false,
+			labelAlign:"left",
+			autoStroll : true,
+			layout:"form",
+			labelAlign : DEFAULTLABELALIGN,
+			labelWidth : DEFAULTLABELWIDTH,
+			items : [{//行一
+						layout:"column",
+						border : false,
+						frame : false,
+						items:[{
+							columnWidth:.5,
+							layout:"form",
+							border : false,
+							items:[{
+								xtype:"textfield",
+								allowBlank:false,
+								fieldLabel:"用户名",
+								name:'Username'
+							}]
+						},{
+						columnWidth:.25,
+						layout:"form",
+						border : false,
+						items:[new Ext.form.Radio({boxLabel:"男",name:"Sex",inputValue:2,checked:true,fieldLabel:"性别"})]
+						
+						},{
+						columnWidth:.25,
+						layout:"form",
+						border : false,
+						items:[new Ext.form.Radio({boxLabel:"女",name:"Sex",inputValue:1,checked:false,labelSeparator:""})]
+						}]
+					},{//行二
+						layout:"column",
+						border : false,
+						frame : false,
+						items:[{
+							columnWidth:.5,
+							border : false,
+							layout:"form",
+							items:[{
+							 xtype : "textfield",
+							  fieldLabel : "登陆名",
+							  allowBlank:false,
+							  name:"LogonName"
+							}]
+						}
+						,{
+							columnWidth:.5,
+							border : false,
+							layout:"form",
+							items:[new Ext.form.DateField({format:DEFAULTDATEFORMAT,name:"Birthday",allowBlank:false,fieldLabel:"出生日期"})]
+							
+						}]
+					},{//行三
+						layout:"column",
+						border : false,
+						frame : false,
+						items:[{
+							columnWidth:.5,
+							border : false,
+							layout:"form",
+							items:[{
+							 xtype : "textfield",
+							 allowBlank:false,
+							  fieldLabel : "密码",
+							  name:"Password"
+							}]
+						}
+						,{
+							columnWidth:.5,
+							border : false,
+							layout:"form",
+							items:[{
+							 xtype : "textfield",
+							  fieldLabel : "办公电话",
+							  name:"Bphone"
+							}]
+							
+						}]
+					},{//行四
+						layout:"column",
+						border : false,
+						frame : false,
+						items:[{
+							columnWidth:.5,
+							border : false,
+							layout:"form",
+							items:[ctrlAny2]
+						}
+						,{
+							columnWidth:.5,
+							border : false,
+							layout:"form",
+							items:[{
+							 xtype : "textfield",
+							  fieldLabel : "职务",
+							  name:"Headship"
+							}]
+							
+						}]
+					},{//行五
+						layout:"form",
+						border : false,
+						frame : false,
+						items:[
+							new Ext.form.TextArea({
+								width:300,
+								name:"note",
+								fieldLabel:"备注",
+								height:60
+							})
+						]
+					}
+
+				
+				]
+	});
+	var tbar4= new Ext.Toolbar([
+	'-',
+	{text:'重置',
+	handler:function(){
+		defaultForm(formAdd.form);}
+		},
+	'-',
+	{text:'保存',
+	handler:function(){
+	
+		if (!formAdd.form.isValid()){
+						Ext.Msg.show({
+									icon : Ext.MessageBox.WARNING,
+									buttons : Ext.Msg.OK,
+									title : '提示',
+									msg : '请按照错误提示填写数据。'
+								});
+						return;
+		}
+
+		request_post("${ph}/user/save?Dptid="+ctrlAnyHidden2.getValue(),formAdd.form.getValues(),function(json){
+			if(json.ok){
+				ext_alert("新建成功");
+				defaultForm(formAdd.form);
+				addwindow.hide();
+				userStore.reload({ params: { start: 0, limit: DEFAULTGRIDLINENUMBER} });
+			}else{
+				ext_alert(json.msg);
+			}
+		});
+	}
+	}
+	]);
+qzfun_ = function(){
+		modifywindow.hide();
+}
+var addwindow = new Ext.Window({
+    //title: '资产详细信息',
+    frame: true,
+    border:false,
+    closable: false,
+   // layout: 'fit',
+    closeAction: 'hide',
+    modal: true,
+    resizable: false,
+    maximized: true,
+    minimizable: false,
+    maximizable: false,
+	tbar:new Ext.Toolbar(['<a href="javascript:">你所在的位置</a>','-','<a href="javascript:qzfun();">用户管理</a>','-','<a href="javascript:">新建用户</a>']),
+	listeners : {'render' : function(){
+								tbar4.render(this.tbar);
+							}
+				},
+		items: [formAdd]
+	});
+
+	qzfun = function(){
+		addwindow.hide();
+	}
+});	                        
+</script>
+  <body>
+  
+  </body>
+</html>

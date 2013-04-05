@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;ping.dong.test.LableedFor&apos; to &apos;LabledFor&apos;&#x0D;&#x0A;- Original project: &apos;test&apos;&#x0D;&#x0A;- Original element: &apos;ping.dong.test.LableedFor&apos;&#x0D;&#x0A;- Renamed element: &apos;ping.dong.test.LabledFor&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;LableedFor&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;ping.dong.test{LableedFor.java[LableedFor" matchStrategy="1" name="LabledFor" qualified="false" references="true" similarDeclarations="false" stamp="1350712310831" textual="false" version="1.0"/>
+</session>

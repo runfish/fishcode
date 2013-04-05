@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc5.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc5_g.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc5dms.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc5dms_g.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6_g.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6dms.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/ojdbc6dms_g.jar"/>
+	<classpathentry kind="lib" path="D:/app/Administrator/product/11.2.0/dbhome_1/jdbc/lib/simplefan.jar"/>
+	<classpathentry kind="lib" path="D:/MYSQL/MySQL/mysql-connector-java-5.1.18-bin.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

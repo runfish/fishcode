@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;/img/WebRoot/doc&apos; to &apos;js&apos;&#x0D;&#x0A;- Original project: &apos;img&apos;&#x0D;&#x0A;- Original element: &apos;doc&apos;" description="Rename resource &apos;doc&apos;" flags="7" id="org.eclipse.jdt.ui.rename.resource" input="WebRoot/doc" name="js" stamp="1363709418094" version="1.0"/>
+</session>

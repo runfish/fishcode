@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<constant name="struts.devMode" value="false" />
+
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="action_one"
+			class="com.action.type.ActionTypeOne">
+		</action>
+		<action name="action_two"
+			class="com.action.type.ActionTypeTwo">
+		</action>
+		<action name="action_three"
+			class="com.action.type.ActionTypeThree">
+		</action>
+
+
+		<action name="action_method_save"
+			class="com.action.method.ActionMethod_1" method="save">
+		</action>
+		<action name="action_method_list"
+			class="com.action.method.ActionMethod_1" method="list">
+		</action>
+		<action name="action_method_update"
+			class="com.action.method.ActionMethod_1" method="update">
+		</action>
+		<action name="action_method_delete"
+			class="com.action.method.ActionMethod_1" method="delete">
+		</action>
+
+
+		<action name="action_method2"
+			class="com.action.method.ActionMethod_1">
+		</action>
+
+		<action name="action_method3_*"
+			class="com.action.method.ActionMethod_3" method="{1}">
+		</action>
+
+		<action name="actionValue_1"
+			class="com.action.getValue.Action_getValue_1">
+		</action>
+
+
+		<action name="actionValue_2"
+			class="com.action.getValue.Action_getValue_2">
+		</action>
+
+		<action name="actionServlet"
+			class="com.action.servletobj.ActionServlet_1">
+		</action>
+
+		<action name="actionServlet_2"
+			class="com.action.servletobj.ActionServlet_2">
+		</action>
+
+		<action name="scope_1" class="com.action.scope.ActionScope_1">
+			<result name="scope">/scope.jsp</result>
+		</action>
+
+		<action name="scope_2" class="com.action.scope.ActionScope_2">
+			<result name="scope2">/scope.jsp</result>
+		</action>
+
+	</package>
+
+</struts>

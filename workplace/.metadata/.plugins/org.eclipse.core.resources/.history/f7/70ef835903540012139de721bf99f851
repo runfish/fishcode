@@ -1,0 +1,14 @@
+package net.dfrz.smmgr01.services;
+
+import java.util.List;
+
+import net.dfrz.smmgr01.domain.Category;
+
+public interface CategoryService {
+
+	void addCtg(Category ctg);
+	void deleteCtg(Category ctg);
+	void getGoodsById(int ctgId);
+	void updateCtg(Category ctg);
+	List loadAll();
+}

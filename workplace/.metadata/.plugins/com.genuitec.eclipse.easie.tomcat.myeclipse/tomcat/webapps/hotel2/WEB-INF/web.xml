@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+	<filter>
+	  <filter-name>RightFilter</filter-name>
+	  <filter-class>net.dfrz.hotel.utils.RightFilter</filter-class>
+	  <init-param>
+	     <param-name>excludeAction</param-name>
+	     <param-value>securityMgr</param-value>
+	  </init-param>
+	</filter>
+	
+	<filter>
+	  <filter-name>CharacterEncodingFilter</filter-name>
+	  <filter-class>net.dfrz.hotel.utils.CharacterEncodingFilter</filter-class>
+	  <init-param>
+	    <param-name>encoding</param-name>
+	    <param-value>utf-8</param-value>
+	  </init-param>
+	</filter>
+	
+	
+	<servlet>
+		<servlet-name>ServletConfigurator</servlet-name>
+		<servlet-class>
+			org.logicalcobwebs.proxool.configuration.ServletConfigurator
+		</servlet-class>
+		<init-param>
+			<param-name>xmlFile</param-name>
+			<param-value>WEB-INF/proxool.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+  <servlet>
+    <servlet-name>HotelMgrServlet</servlet-name>
+    <servlet-class>net.dfrz.hotel.controller.HotelMgrServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>TestServlet</servlet-name>
+    <servlet-class>net.dfrz.hotel.controller.TestServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RoomMgrServlet</servlet-name>
+    <servlet-class>net.dfrz.hotel.controller.RoomMgrServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SecurityMgrServlet</servlet-name>
+    <servlet-class>net.dfrz.hotel.controller.SecurityMgrServlet</servlet-class>
+  </servlet>
+
+  <filter-mapping>
+    <filter-name>RightFilter</filter-name>
+    <url-pattern>/action/*</url-pattern>
+  </filter-mapping>
+  
+  <filter-mapping>
+     <filter-name>CharacterEncodingFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>HotelMgrServlet</servlet-name>
+    <url-pattern>/action/hotelMgr</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>TestServlet</servlet-name>
+    <url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>RoomMgrServlet</servlet-name>
+    <url-pattern>/action/roomMgr</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>SecurityMgrServlet</servlet-name>
+    <url-pattern>/action/securityMgr</url-pattern>
+  </servlet-mapping>
+	
+  <security-constraint>
+	 <web-resource-collection>
+	       <web-resource-name>jsp-pages</web-resource-name>
+	       <url-pattern>/jsps/*</url-pattern>
+	 </web-resource-collection>
+	 <auth-constraint/> <!-- auth:authentication 身份认证 -->
+  </security-constraint>
+  
+  <login-config>
+	  <auth-method>BASIC</auth-method>
+  </login-config>	
+  
+  	
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

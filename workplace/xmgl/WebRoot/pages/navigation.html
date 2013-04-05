@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>导航页面</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<style type="text/css">
+a:link{font-weight : bold ;font-size:12px;text-decoration : none ;color : #c00 ; margin-top: 10px;}
+a:visited {font-weight : bold ;font-size:12px;text-decoration : none ;color : #c30 ;}
+a:hover {font-weight : bold ;font-size:12px;text-decoration : underline ;color : #f60 ;}
+a:active {font-weight : bold ;font-size:12px;text-decoration : none ;color : #F90 ;}
+</style>
+  </head>
+  <#include "/base/base.html">
+  
+  <script type="text/javascript">
+  var contentPanel = null;
+  		var navigations = [];
+  		navigations.push("<a href='javascript:view(\"${ph}/dept\")'>单位管理</a>");
+  		navigations.push("<a href='javascript:view(\"${ph}/user\")'>用户管理</a>");
+  		navigations.push("<a href='javascript:view(\"${ph}/project\")'>项目信息管理</a>");
+		 Ext.onReady(function() {
+
+            var item1 = new Ext.Panel({
+                title: '导航条',
+                html: navigations.join("<br />")
+                //cls:'empty'
+            });
+
+           
+
+            var accordion = new Ext.Panel({
+                region:'west',
+                title:'  ',
+                margins:'5 0 5 5',
+                split:true,
+                collapsible: true,
+                width: 210,
+                layout:'accordion',
+                items: [item1]
+            });
+
+           /*  var viewport = new Ext.Viewport({
+                layout:'border',
+                items:[
+                    accordion, {
+                    region:'center',
+                    margins:'5 5 5 0',
+                    cls:'empty',
+                    bodyStyle:'background:#f1f1f1',
+                    html:'<iframe id="content" src="${CONTEXT_PATH}/welcome" width="100%" height="100%" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>'
+                }]
+            }); */
+            
+		            //右边具体功能面板区
+		 contentPanel = new Ext.TabPanel({
+			region:'center',
+			enableTabScroll:true,
+			activeTab:0,
+			items:[{
+				id:'homePage',
+				title:'首页',
+				autoScroll:true,
+				html:'<iframe scrolling="auto" frameborder="0" width="100%" height="100%" src="${CONTEXT_PATH}/welcome" ></iframe>'
+			}]
+		});
+		
+		var viewport = new Ext.Viewport({
+                layout:'border',
+                items:[
+                    accordion,contentPanel]
+            });
+});
+
+		function view(url){
+			var n = contentPanel.getComponent(url);
+			var title = "--";
+			if((url.indexOf("dept") != -1))title="单位管理";
+			if((url.indexOf("project", 0) != -1))title="项目管理";
+			if((url.indexOf("user", 0) != -1))title="用户管理";
+			if(!n){
+				n = contentPanel.add({
+						'id':url,
+						'title':title,
+						 closable:true,
+						 html:'<iframe scrolling="auto" frameborder="0" width="100%" height="100%" src=' + url +'></iframe>'
+						 });
+			}
+			contentPanel.setActiveTab(n);		 
+			//document.getElementById("content").src=url;
+		}
+	</script>
+  <body>
+  
+  </body>
+</html>

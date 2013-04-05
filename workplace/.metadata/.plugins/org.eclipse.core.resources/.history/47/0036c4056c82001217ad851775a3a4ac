@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package net.dfrz.supershop01.servicesimpl;
+
+import net.dfrz.supershop01.domain.Customer;
+import net.dfrz.supershop01.services.CustomerService;
+
+/**
+ * @author Administrator
+ *
+ */
+public class CustomerServiceImpl implements CustomerService {
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.services.CustomerService#create(net.dfrz.supershop01.domain.Customer)
+	 */
+	
+	public void create(Customer customer) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.services.CustomerService#getCustomerByName(java.lang.String)
+	 */
+	
+	public Customer getCustomerByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see net.dfrz.supershop01.services.CustomerService#modifyCustomer(net.dfrz.supershop01.domain.Customer)
+	 */
+	
+	public void modifyCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

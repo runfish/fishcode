@@ -1,0 +1,392 @@
+/* 窗体 */
+body {
+	font-family:"宋体" Arial Verdana;
+	font-size:12px;
+	margin:0 0 0 0;
+	padding: 0 0 0 0;
+	background-color: #ffffff;
+}
+/* 用户信息 */
+.WeolcomeUser{
+	font:normal 12px 宋体;
+    float:right;
+    padding-left: 0px;
+    padding-right: 0px;
+    color: #ECF5DD;
+    font-weight:bold;
+    font-size:12px;
+}
+/* 面板 */
+.x-panelbody {
+    border:1px solid #99bbe8;
+    border-top:0 none;
+}
+#button-grid.x-panel-body {
+    border:1px solid #99bbe8;
+    border-top:0 none;
+}
+/* 图标 */
+.expandquery{
+	background-image:url(../Images/expand-members.gif) !important;
+}
+.grid {
+    background-image:url(../Images/grid.png) !important;
+}
+.viewlist {
+    background-image:url(../Images/view_list.png) !important;
+}
+.add {
+    background-image:url(../Images/add.gif) !important;
+}
+.save {
+    background-image:url(../Images/save.gif) !important;
+}
+.modify {
+    background-image:url(../Images/modify.gif) !important;
+}
+.copy {
+    background-image:url(../Images/plugin_add.gif) !important;
+}
+.disabled {
+    background-image:url(../Images/delete.gif) !important;
+}
+.delete {
+    background-image:url(../Images/delete2.gif) !important;
+}
+.preview {
+    background-image: url(../Images/preview.png) !important;
+}
+.preview2 {
+    background-image: url(../Images/preview.gif) !important;
+}
+.close {
+    background-image: url(../Images/close2.gif) !important;
+}
+.search {
+	background-image:url(../Images/search.gif) !important;
+}
+.connectto {
+    background-image: url(../Images/connect2.gif) !important;
+}
+.settings {
+	background-image:url(../Images/gears.gif) !important;
+}
+.home {
+	background-image:url(../Images/home.gif) !important;
+}
+.nav {
+	background-image:url(../Images/folder_go.png) !important;
+}
+.arrowup {
+	background-image:url(../Images/arrow-up.gif) !important;
+}
+.arrowleft {
+	background-image:url(../Images/arrow-left.gif) !important;
+}
+.arrowright {
+	background-image:url(../Images/arrow-right.GIF) !important;
+}
+.arrowdown {
+    background-image:url(../Images/arrow-down.gif) !important;
+}
+.rule {
+    background-image:url(../Images/rule.gif) !important;
+}
+.details {
+    background-image:url(../Images/view_list.png) !important;
+}
+.reset {
+    background-image:url(../Images/cog.png) !important;
+}
+.finishtask {
+    background-image:url(../Images/finishtask.gif) !important;
+}
+.approve {
+    background-image:url(../Images/ico_approve.gif) !important;
+}
+.printview{
+    background-image: url(../Images/printpreview.gif) !important;
+}
+.printer {
+    background-image:url(../Images/print.gif) !important;
+}
+.previewsmall {
+    background-image:url(../Images/previewsmall.gif) !important;
+}
+.printersmall {
+    background-image:url(../Images/printsmall.gif) !important;
+}
+.printsetting {
+    background-image:url(../Images/printconfig.gif) !important;
+}
+
+.flow {
+    background-image:url(../Images/drop-yes.gif) !important;
+}
+.meeting {
+    background-image:url(../Images/oked.gif) !important;
+}
+.details{
+    background-image:url(../Images/details.gif) !important;
+}
+.graynode{
+    background-image:url(../Images/graynode.gif) !important;
+}
+.useradd{
+    background-image:url(../Images/user_add.gif) !important;
+}
+.userdel{
+    background-image:url(../Images/user_delete.gif) !important;
+}
+.return{
+    background-image:url(../Images/undo.gif) !important;
+}
+.start{
+    background-image:url(../Images/start.gif) !important;
+}
+.stop{
+    background-image:url(../Images/stop.gif) !important;
+}
+.taskdept{
+    background-image:url(../Images/taskdept.gif) !important;
+}
+.finished{
+    background-image:url(../Images/finished.gif) !important;
+}
+.stockadd{
+    background-image:url(../Images/stockadd.gif) !important;
+}
+.stocking{
+    background-image:url(../Images/stocking.gif) !important;
+}
+.stockin{
+    background-image:url(../Images/stockin.gif) !important;
+}
+.stockout{
+    background-image:url(../Images/stockout.gif) !important;
+}
+.pagedot{
+    background-image:url(../Images/pagedot.gif) !important;
+}
+.download{
+    background-image:url(../Images/down.gif) !important;
+}
+.split{
+    background-image:url(../Images/split.gif) !important;
+}
+.gvoucher{
+    background-image:url(../Images/gvoucher.gif) !important;
+}
+.dvoucher{
+    background-image:url(../Images/dvourcher.gif) !important;
+}
+.consumin{
+    background-image:url(../Images/incsm.gif) !important;
+}
+.consumout{
+    background-image:url(../Images/outcsm.gif) !important;
+}
+.confirm{
+    background-image:url(../Images/confirm.gif) !important;
+}
+.transout{
+    background-image:url(../Images/transout.gif) !important;
+}
+.transin{
+    background-image:url(../Images/transin.gif) !important;
+}
+.createcard{
+    background-image:url(../Images/createcard.gif) !important;
+}
+/* 链接蓝色文字显示 */
+A.navlink:link {
+	font-size: 12px;
+	COLOR: #000066; 
+	TEXT-DECORATION: none;
+}
+A.navlink:visited {
+	font-size: 12px;
+	COLOR: #000066; 
+	TEXT-DECORATION: none;
+}
+A.navlink:hover{
+	font-size: 12px;
+	COLOR: #dd6600; 
+	TEXT-DECORATION: underline;
+}
+.toptext{
+    font-family:宋体;
+    font-size:13px;
+    color:#ffffff;
+    
+}
+.userlogin{
+    font-family:宋体;
+    font-size:12px;
+    color:#111111;
+    font-weight:bold;
+}
+/* 菜单链接样例 */
+A.menu:link{
+    font-family:宋体;
+    font-size:13px;
+    color:#ffffff;
+	TEXT-DECORATION: none
+}
+A.menu:visited {
+    font-family:宋体;
+    font-size:13px;
+    color:#ffffff;
+	TEXT-DECORATION: none
+}
+A.menu:hover{
+    font-family:宋体;
+    font-size:13px;
+	COLOR: #FF6600; 
+	TEXT-DECORATION: underline
+}
+	
+/* top_right栏目样式 */
+A.top:link {	
+	font-size: 12px;
+	COLOR: #000000; 
+	TEXT-DECORATION: none 
+}
+A.top:visited {
+	font-size: 12px;
+	COLOR: #000000; 
+	TEXT-DECORATION: none
+}
+A.top:hover {
+	font-size: 12px;
+	COLOR: #FF6600; 
+	TEXT-DECORATION: underline
+}
+.LinkButton {
+	font-size: 12px;
+	COLOR: #0000aa; 
+	font-weight:bold;
+	cursor: pointer;
+	TEXT-DECORATION: underline;
+}
+.task {
+    background-image:url(../Images/view_list.png) !important;
+}
+.task-folder {
+    background-image:url(../Images/folder_go.png) !important;
+}
+/* 查询需要的样式 */
+.search-item {
+    font:normal 13px tahoma, arial, 宋体, sans-serif;
+    padding:3px 10px 3px 10px;
+    border:1px solid #ffffff;
+    border-bottom:1px solid #eeeeee;
+    white-space:normal;
+    color:#555;
+}
+.search-item h3 {
+    display:block;
+    font:inherit;
+    font-weight:bold;
+    color:#222;
+}
+
+.search-item h3 span {
+    float: right;
+    font-weight:normal;
+    margin:0 0 5px 5px;
+    width:100px;
+    display:block;
+    clear:none;
+}
+/* 状态表需要的样式 */
+#statustable { 
+	border:1px solid #bbb;
+	border-collapse:collapse; 
+}
+#statustable td,
+#statustable th {
+	border:1px solid #ccc;
+	border-collapse:collapse;
+	padding:5px; 
+}
+/*
+ * FileUploadField component styles
+ */
+.x-form-file-wrap {
+    position: relative;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file {
+	position: absolute;
+	right: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+    height: 22px;
+}
+.x-form-file-wrap .x-form-file-btn {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+}
+.x-form-file-wrap .x-form-file-text {
+    position: absolute;
+    left: 0;
+    z-index: 3;
+    color: #777;
+}
+
+/*工作流样式*/
+.menuItem
+{
+    color: black ;
+    background-color:Blue;
+    border-width:0;
+    font-size:12px;
+}
+/* 查看列表数据格式 */
+.instancetitle{
+	font-size: 18px;
+	COLOR: #000000; 
+	font-weight:bold;
+	TEXT-DECORATION: none;
+	line-height:40px;
+}
+
+.fieldlabel {
+	font-size: 12px;
+	COLOR: #222222; 
+	font-weight:bold;
+	TEXT-DECORATION: none;
+	line-height:22px;
+}
+.fieldtext {
+	font-size: 12px;
+	COLOR: #000000; 
+	TEXT-DECORATION: none;
+	line-height:22px;
+	word-break:break-all;
+	text-align: center;
+}
+.tbhead
+{
+    background-image: url(../Resources/Images/table_1_head.gif);
+    font-weight: bold;
+    line-height: 22px;
+}
+.table
+{
+    border: 0px solid #CDD3DC;
+    border-width: 0px;
+    background-color: #CDD3DC;
+    border-collapse: collapse;
+}
+.tbarow
+{
+    background-color: #FFFFFF;
+    vertical-align: middle;
+    line-height: 22px;
+    font-family: 宋体;
+}

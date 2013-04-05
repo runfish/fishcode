@@ -1,0 +1,90 @@
+8
+
+dir
+1189
+svn://dfrz004.xicp.net/trunk/JAVA1205-smmgr-01-002
+svn://dfrz004.xicp.net
+
+
+
+2013-01-08T11:02:10.423427Z
+1186
+J1205-YuDP
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+.classpath
+file
+
+
+
+
+2013-01-07T10:04:29.020108Z
+9c2e0fdaaebce6e2d1d23921654eae6b
+2013-01-07T07:56:04.602866Z
+1178
+J1205-HongHG
+has-props
+
+WebRoot
+dir
+
+.mymetadata
+file
+
+
+
+
+2013-01-01T17:29:58.387661Z
+75090778e83bd9dd5a8ac8ba42888217
+2012-12-31T13:32:22.383326Z
+1072
+J1205-HongHG
+
+.project
+file
+
+
+
+
+2013-01-01T17:29:58.400662Z
+7c2e1985a44cace97355f37d57f47422
+2013-01-01T08:11:42.830766Z
+1087
+J1205-ChenQW
+has-props
+
+src
+dir
+
+docs
+dir
+
+.myumldata
+file
+
+
+
+
+2013-01-01T17:29:58.412663Z
+41a4533a2b274fca0e60e926b83894ce
+2013-01-01T08:11:42.830766Z
+1087
+J1205-ChenQW
+
+.settings
+dir
+

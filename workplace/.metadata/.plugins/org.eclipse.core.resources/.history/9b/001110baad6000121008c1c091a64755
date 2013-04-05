@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+package net.dfrz.jiaqiang;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+/**
+ * @author Administrator
+ *
+ */
+@Dfrz(color="red", value = "", array=1)
+public class AnnotationTest {
+
+	/**
+	 * @param args
+	 */
+	
+	@SuppressWarnings("deprecation")
+	@Dfrz("abc")
+	public static void main(String[] args)throws Exception {
+		// TODO Auto-generated method stub
+		System.runFinalizersOnExit(true);
+		if(AnnotationTest.class.isAnnotationPresent(Dfrz.class)){
+			
+			Dfrz annotation = (Dfrz)AnnotationTest.class.getAnnotation(Dfrz.class);
+			System.out.println(annotation);
+			System.out.println(annotation.color());
+			System.out.println(annotation.array().length);
+		}//检查这个类上的注解示是否存在
+		
+		
+		Collection<Integer> collection1 = new ArrayList<Integer>();
+		Collection<String> collection2 = new ArrayList<String>();
+		collection1.add(1);
+		collection2.add("abc");
+		collection1.getClass().getMethod("add", Object.class).invoke(collection1, 2);
+		System.out.println(collection1.size());
+		
+
+	}
+
+}

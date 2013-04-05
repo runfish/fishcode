@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="FileSystemImportWizard">
+		<item key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID" value="true"/>
+		<item key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID" value="false"/>
+		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="D:\第二阶段\workplace\oa"/>
+			<item value="E:\框架\struts-2.3.8-all\struts-2.3.8\apps\struts2-blank"/>
+			<item value="C:\Users\Administrator\Desktop\category_js无级树"/>
+		</list>
+	</section>
+</section>

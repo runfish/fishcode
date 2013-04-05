@@ -1,0 +1,98 @@
+package net.dfrz.io.thread;
+
+public class ProducerCusDemo {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Resource2 r = new Resource2();
+		Producer producer = new Producer(r);
+		Cus cus = new Cus(r);
+		Thread t1 = new Thread(producer);
+		Thread t2 = new Thread(cus);
+		
+
+	}
+
+}
+
+class Resource2 {
+	private String name;
+	private int count = 1;
+	private boolean flag = false;
+
+	public synchronized void set(String name) {
+		if (flag)
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		this.name = name;
+		count++;
+		System.out.println(Thread.currentThread().getName() + "....生产者..."
+				+ this.name);
+		flag = true;
+		this.notify();
+
+	}
+
+	public synchronized void out() {
+		if (!flag)
+			try {
+				this.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		System.out.println(Thread.currentThread().getName() + "....消费者..."
+				+ this.name);
+
+		flag = false;
+		this.notify();
+	}
+
+}
+
+class Producer implements Runnable {
+
+	private Resource2 r;
+
+	public Producer(Resource2 r) {
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while (true) {
+			r.set("烤鸭");
+
+		}
+
+	}
+
+}
+
+class Cus implements Runnable {
+
+	private Resource2 r;
+
+	public Cus(Resource2 r) {
+		this.r = r;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while (true) {
+			r.out();
+
+		}
+
+	}
+
+}

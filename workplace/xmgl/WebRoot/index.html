@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>项目信息管理登陆页面</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  <#include "base/base.html">
+  <script type="text/javascript">
+  	Ext.onReady(function(){
+  		var pwd = new Ext.FormPanel({
+		      labelWidth: 125,
+		      frame: true,
+		      title: '项目信息管理系统登陆',
+		      bodyStyle:'padding:5px 5px 0',
+		      width: 350,
+		      defaults: {
+		        width: 175,
+		        inputType: 'textfield'
+		      },
+		      defaultType: 'textfield',
+		      items: [{
+		        fieldLabel: '用户名',
+		        name: 'username',
+		        allowBlank:false,
+		        msgTarget:'title',
+		        invalidText:'用户名不能为空'
+		      },{
+		        fieldLabel: '密码',
+		        id:"pwd",
+		        name: 'password',
+		        invalidText:'密码不能为空',
+		        msgTarget:'title',
+		        allowBlank:false,
+		        inputType:'password'
+		      }],
+		      buttons : [{text : '登陆',
+				handler : login},{text : '重置',
+				handler : function(){
+					defaultForm(pwd.form);
+				}
+		      }]
+		    });
+		    
+		  pwd.render("login");
+		  
+	document.getElementById("pwd").onkeydown = function(e){
+		if(e.keyCode == 13)login();
+	}
+	//用户登录
+  	function login(){
+  		if(!(pwd.form.isValid())){
+  			var loginInfo = pwd.form.getValues();
+  			if(loginInfo.username == "" && loginInfo.password == "")ext_alert_error("用户名和密码不能为空");
+  			else ext_alert_error("用户名或密码不能为空");
+  			
+  			return;
+  		}
+  		
+  		request_post(path + '/login',pwd.form.getValues(),function(json){
+  			if(json.ok){
+  				window.location.href = path + "/navigation"
+  			}else{
+  				ext_alert_error(json.msg);
+  			}
+  		});
+  		
+  	}
+  	});
+  	
+  </script>
+  <body>
+  	
+  <center>
+    <div id="login"></div>
+  </center>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+#Sun Mar 24 10:44:42 CST 2013
+TOMCAT_HOME=D\:\\apache-tomcat-6.0.36
+TOMCAT_TEMP=D\:\\apache-tomcat-6.0.36\\temp
+LIBRARY_PATH="C\:\\Program Files\\Java\\jdk1.6.0_43\\bin;D\:\\apache-tomcat-6.0.36\\bin"
+TOMCAT_BASE=D\:\\apache-tomcat-6.0.36
+ENDORSED_DIRS="D\:\\apache-tomcat-6.0.36/common/endorsed"
+eclipse.preferences.version=1
+JDK_INSTALLATION_NAME=jdk1.6.0_43
+JDK_HOME=C\:\\Program Files\\Java\\jdk1.6.0_43
+SERVER_ENABLEMENT=true

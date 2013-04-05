@@ -1,0 +1,111 @@
+package net.dfrz.test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class OgnlAction extends BaseAction{
+
+	private String name;
+	
+	private int age;
+	
+	private DogBean dog;
+	
+	
+	private List<String> strList = new ArrayList<String>();
+	
+	private List<DogBean> dogList = new ArrayList<DogBean>();
+	
+	private Map<String, DogBean> Map = new HashMap<String, DogBean>();
+	
+	
+	
+	
+	
+	
+	/**
+	 * @return the dog
+	 */
+	public DogBean getDog() {
+		return dog;
+	}
+
+
+
+
+	/**
+	 * @param dog the dog to set
+	 */
+	public void setDog(DogBean dog) {
+		this.dog = dog;
+	}
+
+
+
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
+	/**
+	 * @return the age
+	 */
+	public int getAge() {
+		return age;
+	}
+
+
+
+
+	/**
+	 * @param age the age to set
+	 */
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+
+	public void add(){
+		System.out.println("add ·½·¨");
+	}
+	
+
+	/* (non-Javadoc)
+	 * @see com.opensymphony.xwork2.ActionSupport#execute()
+	 */
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		this.age=22;
+		this.name="xiaoyu";
+		this.dog = new DogBean("xiaogou",12);
+		return this.SUCCESS;
+	}
+	
+	public String requestAction() throws Exception{
+		return this.SUCCESS;
+	}
+	
+
+}

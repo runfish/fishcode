@@ -1,0 +1,78 @@
+8
+
+dir
+1447
+svn://dfrz004.xicp.net/trunk/GoodMgrS
+svn://dfrz004.xicp.net
+
+
+
+2012-04-25T04:15:42.002201Z
+158
+wenlr
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+4a330e6b-62f6-4c55-9cb9-af4c8be87119
+
+.classpath
+file
+
+
+
+
+2013-02-25T12:24:00.534361Z
+b3d703ef625b8fc97ac2dfd35ff4387e
+2012-04-18T18:00:26.130882Z
+124
+wenlr
+has-props
+
+WebRoot
+dir
+
+.mymetadata
+file
+
+
+
+
+2013-02-25T12:24:00.544361Z
+167e3f5d3365a1bc2b23f340dec6b84a
+2012-04-22T05:45:48.249758Z
+130
+lianch
+
+.project
+file
+
+
+
+
+2013-02-25T12:24:00.554361Z
+25824dbc869243a544dff5d1aa0326af
+2012-04-09T13:17:03.848626Z
+48
+wenlr
+has-props
+
+db
+dir
+
+src
+dir
+
+.settings
+dir
+

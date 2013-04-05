@@ -1,0 +1,37 @@
+#wrapper{ 
+  margin:10px;  
+}
+
+#title{
+  font-size:14px;
+  font-weight:bold;
+  width:100%;
+  border-bottom:1px solid gray; 
+  padding-border:2px;
+}
+#table1{
+  width:100%;
+  margin-top:10px;
+}
+#table2{
+  width:100%;
+  margin-top:10px;
+}
+
+#table1 th{
+  border-bottom:1px solid black;
+}
+  
+#table1 td{
+  text-align:center;
+  border-bottom:1px dotted gray;
+}
+
+#table2 th{
+  border-bottom:1px solid black;
+}
+
+#table2 td{
+  text-align:center;
+  border-bottom:1px dotted gray;
+}

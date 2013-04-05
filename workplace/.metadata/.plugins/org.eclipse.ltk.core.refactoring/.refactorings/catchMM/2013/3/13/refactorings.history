@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 package(s) to &apos;command/src&apos;&#x0D;&#x0A;- Original project: &apos;catchMM&apos;&#x0D;&#x0A;- Destination element: &apos;command/src&apos;&#x0D;&#x0A;- Original element: &apos;catchMM/src/net.xiaoyu.dp.bridge&apos;" description="Copy package" destination="/src" element1="/src&lt;net.xiaoyu.dp.bridge" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" log="/src&lt;net.xiaoyu.dp.bridge&#x09;true&#x09;false" policy="org.eclipse.jdt.ui.copyPackages" stamp="1364392612613" version="1.0"/>
+</session>

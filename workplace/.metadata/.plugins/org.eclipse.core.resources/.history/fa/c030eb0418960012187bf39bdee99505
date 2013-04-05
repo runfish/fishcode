@@ -1,0 +1,30 @@
+package net.dfrz.homework.action;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UpdateAction extends ActionSupport {
+	
+	private int userid;
+	
+	
+	
+	
+	@Override
+	
+	public String execute(){
+		
+		
+		return this.NONE;
+	}
+	
+	
+	public String update(){
+		
+		
+		
+		
+	}
+	
+
+
+}

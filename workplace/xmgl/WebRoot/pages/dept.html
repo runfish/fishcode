@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>navigation.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+  </head>
+
+  <#include "/base/base.html">
+
+<script type="text/javascript">
+  		/*
+ * 单位类型基础字段
+ */
+ 
+ var flag = "";
+var ctrlDeptId = new Ext.form.Hidden({
+			name : "DptID"
+		});
+
+var ctrlDeptName = new Ext.form.TextField({
+			fieldLabel : '单位名称',
+			name : 'DptName',
+			maxLength : 50,
+			allowBlank : false
+		});
+var ctrlDeptName_ = new Ext.form.TextField({
+			fieldLabel : '单位名称',
+			name : 'DptName',
+			maxLength : 50,
+			allowBlank : false
+		});
+var ctrlDeptClass =	new Ext.form.ComboBox({
+									fieldLabel : '单位级别',
+									hiddenName : 'DptClass',
+									maxLength : 20,
+									allowBlank : true,
+									mode : 'local',
+									triggerAction : 'all',
+									readOnly : true,
+									value : '全国',
+									displayField : 'displayItem',
+									valueField:'IncludeChildren',
+									store : new Ext.data.SimpleStore({
+										fields : [ 'IncludeChildren' ,'displayItem'],
+										data : [[ 'a', '全国' ],['b', '省' ],['c', '地市'],['d', '县'],['e', '乡'],['f', '村'] ]
+									})
+									});
+var ctrlDeptClass_ =	new Ext.form.ComboBox({
+									fieldLabel : '单位级别',
+									hiddenName : 'DptClass',
+									maxLength : 20,
+									allowBlank : true,
+									mode : 'local',
+									triggerAction : 'all',
+									readOnly : true,
+									value : '全国',
+									displayField : 'displayItem',
+									valueField:'IncludeChildren',
+									store : new Ext.data.SimpleStore({
+										fields : [ 'IncludeChildren' ,'displayItem'],
+										data : [[ 'a', '全国' ],['b', '省' ],['c', '地市'],['d', '县'],['e', '乡'],['f', '村'] ]
+									})
+									});
+var ctrlFunctionType =	new Ext.form.ComboBox({
+									fieldLabel : '职能类别',
+									hiddenName : 'DptType',
+									maxLength : 20,
+									allowBlank : true,
+									mode : 'local',
+									triggerAction : 'all',
+									readOnly : true,
+									value : '建设单位',
+									displayField : 'displayItem',
+									valueField:'IncludeChildren',
+									store : new Ext.data.SimpleStore({
+										fields : [ 'IncludeChildren' ,'displayItem'],
+										data : [[ 'a', '建设单位' ],['b', '非建设单位' ]]
+									})
+									});
+var ctrlFunctionType_ =	new Ext.form.ComboBox({
+									fieldLabel : '职能类别',
+									hiddenName : 'DptType',
+									maxLength : 20,
+									allowBlank : true,
+									mode : 'local',
+									triggerAction : 'all',
+									readOnly : true,
+									value : '建设单位',
+									displayField : 'displayItem',
+									valueField:'IncludeChildren',
+									store : new Ext.data.SimpleStore({
+										fields : [ 'IncludeChildren' ,'displayItem'],
+										data : [[ 'a', '建设单位' ],['b', '非建设单位' ]]
+									})
+									});
+									/*
+var ctrlDeptClass = new Ext.form.TextField({
+			fieldLabel : '单位级别',
+			name : 'DptClass',
+			maxLength : 20,
+			allowBlank : true
+		});
+var ctrlFunctionType = new Ext.form.TextField({
+			fieldLabel : '职能类别',
+			name : 'DptType',
+			maxLength : 6,
+			allowBlank : true
+		});*/
+var ctrlDeptCode = new Ext.form.TextField({
+			fieldLabel : '单位代码',
+			name : 'DptCode',
+			maxLength : 6,
+			allowBlank : false
+		});
+var ctrlDeptCode_ = new Ext.form.TextField({
+			fieldLabel : '单位代码',
+			name : 'DptCode',
+			maxLength : 6,
+			allowBlank : false
+		});
+var ctrlRemark = new Ext.form.TextArea({
+			fieldLabel : '单位简介',
+			name : 'DptBriefName',
+			maxLength : 300,
+			allowBlank : true,
+			height : 77
+		});
+var ctrlRemark_ = new Ext.form.TextArea({
+			fieldLabel : '单位简介',
+			name : 'DptBriefName',
+			maxLength : 300,
+			allowBlank : true,
+			height : 77
+		});
+/*
+ * 资产类型树异步加载器
+ */
+var loaderAssetType = new Ext.tree.TreeLoader({
+			dataUrl : '${ph}/dept/tree',
+			baseParams : {
+				parentId : '01'
+			}
+		});
+
+// 为加载器注册加载前事件处理函数
+loaderAssetType.on('beforeload', function(loaderAssetType, node)
+			{
+				loaderAssetType.baseParams.parentId = node.attributes.assetTypeId;
+			}, loaderAssetType);
+
+/*
+ * 资产类型树panel
+ */
+var treeAssetTypeAny = new Ext.tree.TreePanel({
+			title : '单位管理',
+			width : 260,
+			rootVisible : true,
+			autoScroll : true,
+			frame : false,
+			region : 'west',
+			loader : loaderAssetType,
+			root : new Ext.tree.AsyncTreeNode({
+						text : '北京信息管理公司',
+						id : '01',
+						expanded : true
+					})
+		});
+var currentNode = null;
+var qzfun = null;
+/*
+ * 页面加载时初始化页面
+ */
+Ext.onReady(function()
+	{
+		
+		// 当前选中节点
+		var currentNode = null;
+
+		var addSameGradeBtn = new Ext.Button({
+					text : '添加同级',
+					tooltip : '在当前选中的二级或二级以下单位添加同一层级的单位',
+					iconCls : 'diqye',
+					handler : addSameGrade
+				});
+		
+		var addUnderGrade = new Ext.Button({
+					text : '添加下级',
+					tooltip : '当前选择的单位下，添加下级单位',
+					iconCls : 'diqye',
+					handler : addUnderGrade
+				});
+		var modifyBtn = new Ext.Button({
+					text : '修改',
+					tooltip : '可以修改选中的单位信息',
+					iconCls : 'diqye',
+					handler : modifyfun
+				});
+		var delBtn = new Ext.Button({
+					text : '删除',
+					tooltip : '删除该单位信息，当该单位关联项目时，不允许删除，当该单位关联用户后，不允许删除',
+					iconCls : 'diqye',
+					handler : delfun
+				});
+
+		// 单位新建修改form表单
+		var formDept = new Ext.form.FormPanel({
+					frame : false,
+					border : false,
+					autoStroll : true,
+					labelAlign : DEFAULTLABELALIGN,
+					labelWidth : DEFAULTLABELWIDTH,
+					items : [{
+						xtype : 'fieldset',
+						title : '单位基本信息',
+						width : 450,
+						height : 240,
+						defaults : {
+							width : DEFAULTCONTROLWIDTH + 60,
+							bodyStyle : 'padding:1px;'
+						},
+						items : [ctrlDeptId,ctrlDeptName , ctrlDeptClass ,
+								ctrlFunctionType ,ctrlDeptCode, ctrlRemark]
+					}],
+					tbar : [addSameGradeBtn ,addUnderGrade ,modifyBtn ,delBtn ]
+				});
+
+// 单位新建修改form表单
+var formDeptAdd = new Ext.form.FormPanel({
+			frame : false,
+			border : false,
+			autoStroll : true,
+			labelAlign : DEFAULTLABELALIGN,
+			labelWidth : DEFAULTLABELWIDTH,
+			items : [{
+				xtype : 'fieldset',
+				title : '单位基本信息',
+				width : 450,
+				height : 240,
+				defaults : {
+					width : DEFAULTCONTROLWIDTH + 60,
+					bodyStyle : 'padding:2px;'
+				},
+				items : [ctrlDeptName_ , ctrlDeptClass_ ,
+						ctrlFunctionType_ ,ctrlDeptCode_, ctrlRemark_]
+			}]
+	});
+	
+var tbar4= new Ext.Toolbar([
+	'-',
+	{text:'重置',iconCls:'diqye',
+	handler:function(){
+		defaultForm(formDeptAdd.form);}
+		},
+	'-',
+	{text:'保存',iconCls:'diqye',
+	handler:saveDept
+	}
+]);
+// 显示窗口
+var addwindow = new Ext.Window({
+    //title: '资产详细信息',
+    frame: true,
+    border:false,
+    closable: false,
+    layout: 'fit',
+    closeAction: 'hide',
+    modal: true,
+    resizable: false,
+    maximized: true,
+    minimizable: false,
+    maximizable: false,
+	tbar:new Ext.Toolbar(['<a href="javascript:">你所在的位置</a>','-','<a href="javascript:qzfun();">单位管理</a>','-','<a href="javascript:">新建单位</a>']),
+	listeners : {'render' : function(){
+								tbar4.render(this.tbar);
+							}
+				},
+    items: [formDeptAdd]
+});
+
+qzfun = function(){
+	addwindow.hide();
+}
+		// 编辑资产类型 
+		treeAssetTypeAny.on('click', function(node, e)
+					{
+						currentNode = node;
+						//flagSave = 2;
+						//currentNode = node;
+						//formAssetType.getForm().reset();
+						//ctrlAssetTypeNo.setDisabled(true);
+						defaultForm(formDept.form);
+						formDept.form.doAction('load', {
+									url : '${ph}/dept/doAction/'
+											+ node.id
+								});
+					});
+		// 
+		function addSameGrade()	{
+				flag = "t";
+				if (currentNode == null){
+						ext_alert_error("请选择一个单位");
+						return;
+				}
+				if(currentNode.id.length == 2){
+					ext_alert_error("不能添加根目录");
+					return;
+				}
+
+				
+				//defaultForm(formDept.form);//formDeptAdd
+				addwindow.show();
+				defaultForm(formDeptAdd.form);
+				
+		}
+
+		function addUnderGrade(){
+			flag = "x";
+			if (currentNode == null){
+						ext_alert_error("请选择一个单位");
+						return;
+				}
+				if(currentNode.id.length == 2){
+					ext_alert_error("不能添加根目录");
+					return;
+				}
+
+				
+				//defaultForm(formDept.form);//formDeptAdd
+				addwindow.show();
+				defaultForm(formDeptAdd.form);
+		}
+		// 保存新建修改信息
+		function modifyfun(){
+
+				if (!formDept.form.isValid()){
+						Ext.Msg.show({
+									icon : Ext.MessageBox.WARNING,
+									buttons : Ext.Msg.OK,
+									title : '提示',
+									msg : '请按照错误提示填写数据。'
+								});
+						return;
+					}
+
+				if (currentNode == null){
+						ext_alert_error("请选择一个单位");
+						return;
+				}
+				
+
+				request_post('${ph}/dept/update',formDept.form.getValues(),function(json){
+						if(json.ok){
+							ext_alert("修改成功");
+							//defaultForm(formDeptAdd.form);
+							//addwindow.hide();
+							var path = currentNode.parentNode.getPath();
+							loaderAssetType.load(currentNode.parentNode,function(){
+									treeAssetTypeAny.expandPath(path);
+								});
+							currentNode = null;
+							defaultForm(formDept.form);
+						}else{
+							ext_alert_error(json.msg);
+						}
+					}
+					);
+				
+		}
+		function delfun(){
+			if (currentNode == null){
+						ext_alert_error("请选择一个单位");
+						return;
+			}
+			if(currentNode.id == "01" || currentNode.id == "01l"){
+						ext_alert_error("不能删除根目录");
+						return;
+			}
+			request_post('${ph}/dept/del/'+formDept.form.getValues().DptID+'-'+currentNode.id,null,function(json){
+						if(json.ok){
+							ext_alert("删除成功");
+							//defaultForm(formDeptAdd.form);
+							//addwindow.hide();
+							
+//							var path = currentNode.parentNode.getPath();
+							var treeNode = currentNode.parentNode;
+							if(treeNode.id != "01")treeNode = treeNode.parentNode;
+							loaderAssetType.load(treeNode,function(){
+									treeAssetTypeAny.expandPath(treeNode.getPath());
+								});
+							currentNode = null;
+							defaultForm(formDept.form);
+						}else{
+							ext_alert_error(json.msg);
+						}
+					}
+			);
+		}
+		function saveDept(){
+			if (!formDeptAdd.form.isValid()){
+						Ext.Msg.show({
+									icon : Ext.MessageBox.WARNING,
+									buttons : Ext.Msg.OK,
+									title : '提示',
+									msg : '请按照错误提示填写数据。'
+								});
+						return;
+			}
+
+			if(flag == "t"){
+				request_post('${ph}/dept/addSameDept?selectDept='+currentNode.id,formDeptAdd.form.getValues(),function(json){
+						if(json.ok){
+							ext_alert("添加成功");
+							defaultForm(formDeptAdd.form);
+							addwindow.hide();
+							var path = currentNode.parentNode.getPath();
+							loaderAssetType.load(currentNode.parentNode,function(){
+									treeAssetTypeAny.expandPath(path);
+								});
+							currentNode = null;
+							defaultForm(formDept.form);
+						}else{
+							ext_alert_error(json.msg);
+						}
+					}
+					);
+			}
+
+			if(flag == "x"){
+				request_post('${ph}/dept/addUnderDept?selectDept='+currentNode.id,formDeptAdd.form.getValues(),function(json){
+						if(json.ok){
+							ext_alert("添加成功");
+							defaultForm(formDeptAdd.form);
+							addwindow.hide();
+							var path = currentNode.parentNode.getPath();
+							loaderAssetType.load(currentNode.parentNode,function(){
+									treeAssetTypeAny.expandPath(path);
+								});
+						currentNode = null;
+						defaultForm(formDept.form);
+						}else{
+							ext_alert_error(json.msg);
+						}
+					}
+					);
+			}
+		}
+
+		// 导航标识(当前页所处位置)
+		var tbar1 = new Ext.Toolbar({
+					region : 'north',
+					items : ['-', 
+					'<a href="javascript:void();">你当前所在的位置</a>', '-',
+							'<a href="javascript:" class="navlink">单位管理</a>']
+				});
+
+		// 页面布局
+		var viewport = new Ext.Viewport({
+					layout : 'border',
+					renderTo : Ext.getBody(),
+					items : [tbar1, treeAssetTypeAny, {
+								region : 'center',
+								xtype : 'panel',
+								frame : true,
+								autoScroll : true,
+								border : false,
+								items : [formDept]
+							}]
+				});
+	});
+
+</script>
+  <body>
+  
+  </body>
+</html>

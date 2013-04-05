@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<something-else-entirely>
+
+  <proxool>
+  
+    <alias>hotelsys-ds</alias> <!-- datasource ds -->
+    
+    <driver-url>jdbc:oracle:thin:@219.229.129.55:1521:orcl</driver-url>
+    
+    <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+    
+    <driver-properties>
+      <property name="user" value="hotelmgr"/>
+      <property name="password" value="abc"/>
+    </driver-properties>
+    
+    <!-- 最多容纳连接数量 -->
+    <maximum-connection-count>100</maximum-connection-count> 
+    
+    <!-- 最少包含的连接数量 -->
+    <minimum-connection-count>10</minimum-connection-count>    
+
+    <!-- 每次最多增加10个 -->
+    <maximum-new-connections>10</maximum-new-connections>    
+    
+    <!-- 每隔90S自检一次 --> 
+    <house-keeping-sleep-time>90000</house-keeping-sleep-time>  
+
+    <prototype-count>5</prototype-count>    
+
+    <!-- 使用之前是否要测试 -->
+    <test-before-use>true</test-before-use>  
+    
+    <!-- 测试语句 -->
+    <house-keeping-test-sql>select * from dual</house-keeping-test-sql>  
+
+  </proxool>
+  
+</something-else-entirely>
